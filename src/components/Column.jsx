@@ -1,4 +1,3 @@
-import React from "react";
 import TodoCard from "./TodoCard";
 
 export default function Column({ card }) {

@@ -1,4 +1,3 @@
-import React from "react";
 import Column from "./Column";
 import { useState } from "react";
 import { carddata } from "../assets/carddata.jsx";

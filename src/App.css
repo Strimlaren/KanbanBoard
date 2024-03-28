@@ -64,9 +64,40 @@ body {
 }
 
 .todo-card {
-  width: 100%;
   border-radius: 5px;
   background-color: #212121;
-  padding: 1rem;
+  padding: 0.5rem 0.5rem 0.2rem 0.5rem;
   box-shadow: 0 0 4px 1px #212121;
+}
+
+.todo-card h3 {
+  font-size: 1.1rem;
+  font-weight: 200;
+  color: white;
+}
+
+.todo-card p:first-of-type {
+  margin: 4px 0 8px 0;
+  font-size: 0.8rem;
+  color: #9f9f9f;
+}
+
+.todo-card p:nth-child(3) {
+  font-size: 0.7rem;
+  color: #9f9f9f;
+  margin: 0.2rem 0 0 0;
+}
+
+.p-content-div {
+  border-bottom: 1px solid rgb(159, 159, 159, 0.2);
+}
+
+.highlight {
+  color: whitesmoke;
+}
+
+svg {
+  width: 15px;
+  height: 15px;
+  fill: red;
 }
