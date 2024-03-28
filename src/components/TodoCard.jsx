@@ -1,18 +1,34 @@
-import { TrashIcon } from "../assets/images/icons.jsx";
+import {
+  TrashIcon,
+  EditIcon,
+  DoneIcon,
+  ReturnIcon,
+} from "../assets/images/icons.jsx";
 
-export default function TodoCard({ title, content, creator, date }) {
+export default function TodoCard({ colpos, title, content, creator, date }) {
   return (
     <div className="todo-card">
       <h3>{title}</h3>
       <div className="p-content-div">
-        <p className="content">{content}</p>
+        <p>{content}</p>
       </div>
-      <p>
-        Created {date} by{" "}
-        <span className="highlight">
-          {creator} <TrashIcon />
-        </span>
-      </p>
+      <div className="card-footer">
+        <p>
+          Created {date} by <span className="highlight">{creator}</span>
+        </p>
+        <div className="icon-container">
+          {colpos !== 0 && (
+            <span className="left-icon">
+              <ReturnIcon />
+            </span>
+          )}
+          <TrashIcon />
+          <EditIcon />
+          <span className="right-icon">
+            <DoneIcon />
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

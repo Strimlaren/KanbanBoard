@@ -55,6 +55,7 @@ body {
   font-weight: 500;
   text-transform: uppercase;
   text-align: center;
+  position: relative;
 }
 
 .cards-container {
@@ -76,16 +77,20 @@ body {
   color: white;
 }
 
-.todo-card p:first-of-type {
-  margin: 4px 0 8px 0;
+.p-content-div p {
+  margin: 2px 0 6px 0;
   font-size: 0.8rem;
   color: #9f9f9f;
 }
 
-.todo-card p:nth-child(3) {
+.card-footer p {
   font-size: 0.7rem;
   color: #9f9f9f;
   margin: 0.2rem 0 0 0;
+}
+
+.card-footer {
+  position: relative;
 }
 
 .p-content-div {
@@ -96,8 +101,45 @@ body {
   color: whitesmoke;
 }
 
+.icon-container {
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  display: none;
+}
+
+.todo-card:hover .icon-container {
+  display: block;
+}
+
 svg {
-  width: 15px;
-  height: 15px;
-  fill: red;
+  width: 13px;
+  height: 13px;
+  margin-left: 3px;
+  fill: white;
+  transition: fill 0.5s ease;
+}
+
+svg:hover {
+  fill: #9f9f9f;
+  cursor: pointer;
+}
+
+.add-icon {
+  position: absolute;
+  top: 2px;
+  right: 30px;
+}
+
+.add-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.left-icon {
+  margin-right: 7px;
+}
+
+.right-icon {
+  margin-left: 7px;
 }
