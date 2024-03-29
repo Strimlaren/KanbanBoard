@@ -7,14 +7,7 @@ import {
 import { useContext } from "react";
 import { DataContext } from "./ColumnList.jsx";
 
-export default function TodoCard({
-  index,
-  colpos,
-  title,
-  content,
-  creator,
-  date,
-}) {
+export default function TodoCard({ index, colpos }) {
   const [cards, setCards] = useContext(DataContext);
 
   function handleDelete() {
@@ -34,15 +27,39 @@ export default function TodoCard({
     });
   }
 
+  function handleMoveRight() {
+    setCards((prevCards) => {
+      let newCards = prevCards.map((column) => ({
+        ...column,
+        cards: column.cards.map((card) => ({ ...card })),
+      }));
+
+      let targetedCard = newCards[colpos].cards.filter((_, i) => i === index);
+      console.log(targetedCard);
+      let filteredColumnCards = newCards[colpos].cards.filter(
+        (_, i) => i !== index
+      );
+      newCards[colpos].cards = filteredColumnCards;
+
+      if (colpos + 1 < cards.length)
+        newCards[colpos + 1].cards.push(targetedCard[0]);
+
+      return newCards;
+    });
+  }
+
   return (
     <div className="todo-card">
-      <h3>{title}</h3>
+      <h3>{cards[colpos].cards[index].cardTitle}</h3>
       <div className="p-content-div">
-        <p>{content}</p>
+        <p>{cards[colpos].cards[index].content}</p>
       </div>
       <div className="card-footer">
         <p>
-          Added {date} by <span className="highlight">{creator}</span>
+          Added {cards[colpos].cards[index].date} by{" "}
+          <span className="highlight">
+            {cards[colpos].cards[index].creator}
+          </span>
         </p>
         <div className="icon-container">
           {colpos !== 0 && (
@@ -54,7 +71,7 @@ export default function TodoCard({
             <TrashIcon />
           </span>
           <EditIcon />
-          <span className="right-icon">
+          <span className="right-icon" onClick={handleMoveRight}>
             <DoneIcon />
           </span>
         </div>
