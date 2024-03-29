@@ -1,22 +1,30 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
+import { DataContext, ModalContext } from "../App.jsx";
 import TodoCard from "./TodoCard";
-import NewEditModal from "./NewEditModal.jsx";
+import { NewModal } from "./NewEditModal.jsx";
+import { EditModal } from "./EditModal.jsx";
 import { AddNewIcon } from "../assets/images/icons.jsx";
-import { ModalContext } from "../App.jsx";
 
 export default function Column({ card, colpos }) {
-  const [isModalOpen, setIsModalOpen, handleToggleModal] =
-    useContext(ModalContext);
+  const [cards, setCards] = useContext(DataContext);
+  const [
+    isNewModalOpen,
+    handleToggleNewModal,
+    isEditModalOpen,
+    handleToggleEditModal,
+  ] = useContext(ModalContext);
 
   return (
     <>
-      {isModalOpen && <NewEditModal toggleModal={handleToggleModal} />}
+      {isNewModalOpen && <NewModal />}
+      {isEditModalOpen && <EditModal index={index} colpos={colpos} />}
+      {/* {isEditModalOpen && <EditModal card={card} />} */}
       <div className="column">
         <div className="column-title">
           {card.columnTitle}
           {colpos === 0 && (
             <div className="add-icon">
-              <span onClick={handleToggleModal}>
+              <span onClick={handleToggleNewModal}>
                 <AddNewIcon />
               </span>
             </div>

@@ -6,22 +6,34 @@ import Header from "./components/Header";
 
 export const ModalContext = createContext();
 export const DataContext = createContext();
+
 export default function App() {
   const [cards, setCards] = useState(carddata);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isNewModalOpen, setIsNewModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  function handleToggleModal() {
-    setIsModalOpen((prevState) => !prevState);
+  function handleToggleNewModal() {
+    setIsNewModalOpen((prevState) => !prevState);
   }
+
+  function handleToggleEditModal() {
+    setIsEditModalOpen((prevState) => !prevState);
+  }
+
   return (
     <>
-      <DataContext.Provider value={[cards, setCards]}>
-        <ModalContext.Provider
-          value={[isModalOpen, setIsModalOpen, handleToggleModal]}>
-          <Header />
+      <Header />
+      <ModalContext.Provider
+        value={[
+          isNewModalOpen,
+          handleToggleNewModal,
+          isEditModalOpen,
+          handleToggleEditModal,
+        ]}>
+        <DataContext.Provider value={[cards, setCards]}>
           <ColumnList cards={cards} />
-        </ModalContext.Provider>
-      </DataContext.Provider>
+        </DataContext.Provider>
+      </ModalContext.Provider>
     </>
   );
 }

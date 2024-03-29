@@ -1,12 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext, useState, useEffect } from "react";
+import { DataContext, ModalContext } from "../App.jsx";
 import "../assets/styles/modal.css";
 import { CloseIcon } from "../assets/images/icons.jsx";
-import { DataContext, ModalContext } from "../App.jsx";
 
-export function NewModal() {
-  const [titleInput, setTitleInput] = useState("");
-  const [contentInput, setContentInput] = useState("");
-  const [authorInput, setAuthorInput] = useState("");
+export function EditModal({ index, colpos }) {
+  // console.log(card);
   const [cards, setCards] = useContext(DataContext);
   const [
     isNewModalOpen,
@@ -15,8 +13,18 @@ export function NewModal() {
     handleToggleEditModal,
   ] = useContext(ModalContext);
 
+  const [titleInput, setTitleInput] = useState(
+    cards[colpos].cards[index].cardTitle
+  );
+  const [contentInput, setContentInput] = useState(
+    cards[colpos].cards[index].content
+  );
+  const [authorInput, setAuthorInput] = useState(
+    cards[colpos].cards[index].creator
+  );
+
   useEffect(() => {
-    handleToggleNewModal();
+    handleToggleEditModal();
   }, [cards]);
 
   function handleTitle(e) {
@@ -50,7 +58,8 @@ export function NewModal() {
         creator: authorInput,
       };
 
-      newCards[0].cards.push(newCard);
+      newCards[colpos].cards[index] = newCard;
+      handleToggleEditModal();
       return newCards;
     });
   }
@@ -58,11 +67,11 @@ export function NewModal() {
   return (
     <div className="modal-dimmer">
       <div className="modal-body">
-        <span onClick={handleToggleNewModal}>
+        <span onClick={handleToggleEditModal}>
           <CloseIcon />
         </span>
         <div className="modal-inner">
-          <h4>ADD NEW TASK</h4>
+          <h4>EDIT TASK</h4>
           <input
             type="text"
             placeholder="Enter task title here"
@@ -93,7 +102,7 @@ export function NewModal() {
                 titleInput === "" || contentInput === "" || authorInput === ""
               }
               onClick={handleSubmit}>
-              ADD
+              EDIT
             </button>
           </div>
         </div>

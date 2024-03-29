@@ -5,10 +5,17 @@ import {
   ReturnIcon,
 } from "../assets/images/icons.jsx";
 import { useContext } from "react";
-import { DataContext } from "../App.jsx";
+import { DataContext, ModalContext } from "../App.jsx";
+import { EditModal } from "./EditModal.jsx";
 
 export default function TodoCard({ index, colpos }) {
   const [cards, setCards] = useContext(DataContext);
+  const [
+    isNewModalOpen,
+    handleToggleNewModal,
+    isEditModalOpen,
+    handleToggleEditModal,
+  ] = useContext(ModalContext);
 
   function handleDelete() {
     setCards((prevCards) => {
@@ -68,38 +75,42 @@ export default function TodoCard({ index, colpos }) {
     });
   }
 
-  function handleEdit() {}
+  function handleEdit() {
+    handleToggleEditModal();
+  }
 
   return (
-    <div className="todo-card">
-      <h3>{cards[colpos].cards[index].cardTitle}</h3>
-      <div className="p-content-div">
-        <p>{cards[colpos].cards[index].content}</p>
-      </div>
-      <div className="card-footer">
-        <p>
-          Added {cards[colpos].cards[index].date} by{" "}
-          <span className="highlight">
-            {cards[colpos].cards[index].creator}
-          </span>
-        </p>
-        <div className="icon-container">
-          {colpos !== 0 && (
-            <span className="left-icon" onClick={handleMoveLeft}>
-              <ReturnIcon />
+    <>
+      <div className="todo-card">
+        <h3>{cards[colpos].cards[index].cardTitle}</h3>
+        <div className="p-content-div">
+          <p>{cards[colpos].cards[index].content}</p>
+        </div>
+        <div className="card-footer">
+          <p>
+            Added {cards[colpos].cards[index].date} by{" "}
+            <span className="highlight">
+              {cards[colpos].cards[index].creator}
             </span>
-          )}
-          <span onClick={handleDelete}>
-            <TrashIcon />
-          </span>
-          <span onClick={handleEdit}>
-            <EditIcon />
-          </span>
-          <span className="right-icon" onClick={handleMoveRight}>
-            <DoneIcon />
-          </span>
+          </p>
+          <div className="icon-container">
+            {colpos !== 0 && (
+              <span className="left-icon" onClick={handleMoveLeft}>
+                <ReturnIcon />
+              </span>
+            )}
+            <span onClick={handleDelete}>
+              <TrashIcon />
+            </span>
+            <span onClick={handleEdit}>
+              <EditIcon />
+            </span>
+            <span className="right-icon" onClick={handleMoveRight}>
+              <DoneIcon />
+            </span>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
