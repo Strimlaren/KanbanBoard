@@ -6,19 +6,19 @@ import { AddNewIcon } from "../assets/images/icons.jsx";
 export default function Column({ card, colpos }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  function handleClickNew() {
-    setIsModalOpen(true);
+  function handleToggleModal() {
+    setIsModalOpen((prevState) => !prevState);
   }
 
   return (
     <>
-      {isModalOpen && <NewEditModal />}
+      {isModalOpen && <NewEditModal toggleModal={handleToggleModal} />}
       <div className="column">
         <div className="column-title">
           {card.columnTitle}
           {colpos === 0 && (
             <div className="add-icon">
-              <span onClick={handleClickNew}>
+              <span onClick={handleToggleModal}>
                 <AddNewIcon />
               </span>
             </div>
@@ -29,6 +29,7 @@ export default function Column({ card, colpos }) {
             return (
               <TodoCard
                 key={index}
+                index={index}
                 colpos={colpos}
                 title={cardx.cardTitle}
                 content={cardx.content}

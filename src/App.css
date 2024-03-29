@@ -104,7 +104,7 @@ body {
 .icon-container {
   position: absolute;
   right: 0;
-  bottom: -3px;
+  bottom: -5px;
   display: none;
 }
 
@@ -142,4 +142,17 @@ svg:hover {
 
 .right-icon {
   margin-left: 7px;
+}
+
+.modal-body svg {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 20px;
+  top: -11px;
+  fill: white;
+}
+
+.modal-body svg:hover {
+  fill: red;
 }

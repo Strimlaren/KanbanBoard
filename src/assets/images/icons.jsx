@@ -56,7 +56,7 @@ export const AddNewIcon = () => (
   </svg>
 );
 
-export const CloseIcon = () => {
+export const CloseIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     id="Layer_1"
@@ -65,5 +65,17 @@ export const CloseIcon = () => {
     width="512"
     height="512">
     <path d="M20,22V3c0-1.654-1.346-3-3-3H7c-1.654,0-3,1.346-3,3V22H0v2H24v-2h-4Zm-3.5-8.75c-.828,0-1.5-.672-1.5-1.5s.672-1.5,1.5-1.5,1.5,.672,1.5,1.5-.672,1.5-1.5,1.5Z" />
-  </svg>;
-};
+  </svg>
+);
+
+export const CloseIcon2 = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="Layer_1"
+    data-name="Layer 1"
+    viewBox="0 0 24 24"
+    width="512"
+    height="512">
+    <path d="M21,2H3C1.346,2,0,3.346,0,5V22H24V5c0-1.654-1.346-3-3-3Zm-4.543,13.043l-1.414,1.414-3.043-3.043-3.043,3.043-1.414-1.414,3.043-3.043-3.043-3.043,1.414-1.414,3.043,3.043,3.043-3.043,1.414,1.414-3.043,3.043,3.043,3.043Z" />
+  </svg>
+);

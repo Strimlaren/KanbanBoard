@@ -4,8 +4,36 @@ import {
   DoneIcon,
   ReturnIcon,
 } from "../assets/images/icons.jsx";
+import { useContext } from "react";
+import { DataContext } from "./ColumnList.jsx";
 
-export default function TodoCard({ colpos, title, content, creator, date }) {
+export default function TodoCard({
+  index,
+  colpos,
+  title,
+  content,
+  creator,
+  date,
+}) {
+  const [cards, setCards] = useContext(DataContext);
+
+  function handleDelete() {
+    setCards((prevCards) => {
+      const newCards = prevCards.map((column) => ({
+        ...column,
+        cards: column.cards.map((card) => ({ ...card })),
+      }));
+
+      const filteredColumnCards = newCards[colpos].cards.filter(
+        (_, i) => i !== index
+      );
+      newCards[colpos].cards = filteredColumnCards;
+
+      console.log(newCards);
+      return newCards;
+    });
+  }
+
   return (
     <div className="todo-card">
       <h3>{title}</h3>
@@ -14,7 +42,7 @@ export default function TodoCard({ colpos, title, content, creator, date }) {
       </div>
       <div className="card-footer">
         <p>
-          Created {date} by <span className="highlight">{creator}</span>
+          Added {date} by <span className="highlight">{creator}</span>
         </p>
         <div className="icon-container">
           {colpos !== 0 && (
@@ -22,7 +50,9 @@ export default function TodoCard({ colpos, title, content, creator, date }) {
               <ReturnIcon />
             </span>
           )}
-          <TrashIcon />
+          <span onClick={handleDelete}>
+            <TrashIcon />
+          </span>
           <EditIcon />
           <span className="right-icon">
             <DoneIcon />
