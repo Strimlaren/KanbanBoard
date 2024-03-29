@@ -1,14 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import TodoCard from "./TodoCard";
 import NewEditModal from "./NewEditModal.jsx";
 import { AddNewIcon } from "../assets/images/icons.jsx";
+import { ModalContext } from "../App.jsx";
 
 export default function Column({ card, colpos }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  function handleToggleModal() {
-    setIsModalOpen((prevState) => !prevState);
-  }
+  const [isModalOpen, setIsModalOpen, handleToggleModal] =
+    useContext(ModalContext);
 
   return (
     <>

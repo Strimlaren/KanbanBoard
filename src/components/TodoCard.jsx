@@ -5,7 +5,7 @@ import {
   ReturnIcon,
 } from "../assets/images/icons.jsx";
 import { useContext } from "react";
-import { DataContext } from "./ColumnList.jsx";
+import { DataContext } from "../App.jsx";
 
 export default function TodoCard({ index, colpos }) {
   const [cards, setCards] = useContext(DataContext);
@@ -68,6 +68,8 @@ export default function TodoCard({ index, colpos }) {
     });
   }
 
+  function handleEdit() {}
+
   return (
     <div className="todo-card">
       <h3>{cards[colpos].cards[index].cardTitle}</h3>
@@ -90,7 +92,9 @@ export default function TodoCard({ index, colpos }) {
           <span onClick={handleDelete}>
             <TrashIcon />
           </span>
-          <EditIcon />
+          <span onClick={handleEdit}>
+            <EditIcon />
+          </span>
           <span className="right-icon" onClick={handleMoveRight}>
             <DoneIcon />
           </span>

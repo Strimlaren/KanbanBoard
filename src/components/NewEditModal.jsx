@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import "../assets/styles/modal.css";
-import { CloseIcon, CloseIcon2 } from "../assets/images/icons.jsx";
+import { CloseIcon } from "../assets/images/icons.jsx";
 import { useContext } from "react";
-import { DataContext } from "./ColumnList.jsx";
+import { DataContext } from "../App.jsx";
 export default function NewEditModal({ toggleModal }) {
   const [titleInput, setTitleInput] = useState("");
   const [contentInput, setContentInput] = useState("");
@@ -48,7 +48,7 @@ export default function NewEditModal({ toggleModal }) {
     <div className="modal-dimmer">
       <div className="modal-body">
         <span onClick={toggleModal}>
-          <CloseIcon2 />
+          <CloseIcon />
         </span>
         <div className="modal-inner">
           <h4>ADD NEW TASK</h4>
