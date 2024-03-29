@@ -35,7 +35,7 @@ export default function TodoCard({ index, colpos }) {
       }));
 
       let targetedCard = newCards[colpos].cards.filter((_, i) => i === index);
-      console.log(targetedCard);
+
       let filteredColumnCards = newCards[colpos].cards.filter(
         (_, i) => i !== index
       );
@@ -43,6 +43,26 @@ export default function TodoCard({ index, colpos }) {
 
       if (colpos + 1 < cards.length)
         newCards[colpos + 1].cards.push(targetedCard[0]);
+
+      return newCards;
+    });
+  }
+
+  function handleMoveLeft() {
+    setCards((prevCards) => {
+      let newCards = prevCards.map((column) => ({
+        ...column,
+        cards: column.cards.map((card) => ({ ...card })),
+      }));
+
+      let targetedCard = newCards[colpos].cards.filter((_, i) => i === index);
+
+      let filteredColumnCards = newCards[colpos].cards.filter(
+        (_, i) => i !== index
+      );
+      newCards[colpos].cards = filteredColumnCards;
+
+      newCards[colpos - 1].cards.push(targetedCard[0]);
 
       return newCards;
     });
@@ -63,7 +83,7 @@ export default function TodoCard({ index, colpos }) {
         </p>
         <div className="icon-container">
           {colpos !== 0 && (
-            <span className="left-icon">
+            <span className="left-icon" onClick={handleMoveLeft}>
               <ReturnIcon />
             </span>
           )}
