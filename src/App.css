@@ -22,16 +22,19 @@ body {
 
 .header {
   width: 100vw;
+  height: 60px;
   background-color: #212121;
   padding-left: 1rem;
-  font-family: "Kanit", sans-serif;
   font-weight: 500;
   text-align: center;
 }
 
 h1 {
-  font-size: 1rem;
-
+  font-size: 2.2rem;
+  font-family: "Kanit", sans-serif;
+  font-weight: 100;
+  letter-spacing: -1px;
+  margin: 0 1rem 1rem 1rem;
 }
 
 .column-list {
@@ -57,7 +60,7 @@ h1 {
   margin: 8px 3px 13px 3px;
   font-family: "Kanit", sans-serif;
   font-size: 1.3rem;
-  font-weight: 500;
+  font-weight: 200;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   text-align: center;
@@ -138,8 +141,8 @@ svg:hover {
 }
 
 .add-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .left-icon {
