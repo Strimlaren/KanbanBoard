@@ -49,7 +49,7 @@ export function EditModal() {
       const newCard = {
         cardTitle: titleInput,
         content: contentInput,
-        date: getTimeStamp(),
+        date: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].date,
         creator: authorInput,
       };
 
@@ -82,15 +82,18 @@ export function EditModal() {
             onChange={handleContent}
             value={contentInput}></textarea>
           <div className="modal-footer">
-            <input
-              type="text"
-              placeholder="Authored by..."
-              style={{ width: "50%" }}
-              required
-              onChange={handleAuthor}
-              value={authorInput}
-            />
-            <span className="time-stamp">{getTimeStamp()}</span>
+            <div>
+              <span className="time-stamp">By: </span>
+              <input
+                type="text"
+                style={{ width: "50%" }}
+                disabled
+                value={authorInput}
+              />
+            </div>
+            <span className="time-stamp">
+              {cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].date}
+            </span>
             <button
               className="add-note"
               disabled={
