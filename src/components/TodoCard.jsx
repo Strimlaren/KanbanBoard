@@ -27,8 +27,6 @@ export default function TodoCard({ index, colpos }) {
         (_, i) => i !== index
       );
       newCards[colpos].cards = filteredColumnCards;
-
-      console.log(newCards);
       return newCards;
     });
   }

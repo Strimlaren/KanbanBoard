@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DataContext, ModalContext } from "../App.jsx";
 import "../assets/styles/modal.css";
-import { CloseIcon } from "../assets/images/icons.jsx";
+import { CloseIcon, TrashIcon } from "../assets/images/icons.jsx";
 
-export function EditModal() {
+export default function EditModal() {
   const [cards, setCards] = useContext(DataContext);
   const [isDisabled, setIsDisabled] = useState(true);
   const [
@@ -11,6 +11,7 @@ export function EditModal() {
     handleToggleNewModal,
     isEditModalOpen,
     handleToggleEditModal,
+    setIsEditModalOpen,
   ] = useContext(ModalContext);
 
   const [titleInput, setTitleInput] = useState(
@@ -22,6 +23,10 @@ export function EditModal() {
   const [authorInput, setAuthorInput] = useState(
     cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].creator
   );
+
+  useEffect(() => {
+    setIsEditModalOpen([true]);
+  }, []);
 
   function handleTitle(e) {
     setIsDisabled(false);
@@ -62,7 +67,21 @@ export function EditModal() {
       return newCards;
     });
   }
+  function handleDelete() {
+    setCards((prevCards) => {
+      const newCards = prevCards.map((column) => ({
+        ...column,
+        cards: column.cards.map((card) => ({ ...card })),
+      }));
 
+      const filteredColumnCards = newCards[isEditModalOpen[2]].cards.filter(
+        (_, i) => i !== isEditModalOpen[1]
+      );
+      newCards[isEditModalOpen[2]].cards = filteredColumnCards;
+      handleToggleEditModal();
+      return newCards;
+    });
+  }
   return (
     <div className="modal-dimmer">
       <div className="modal-body">
@@ -98,12 +117,17 @@ export function EditModal() {
             <span className="time-stamp">
               {cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].date}
             </span>
-            <button
-              className="add-note"
-              disabled={isDisabled}
-              onClick={handleSubmit}>
-              SAVE
-            </button>
+            <div className="buttons-div">
+              <button onClick={handleDelete} className="add-note del">
+                <TrashIcon />
+              </button>
+              <button
+                className="add-note"
+                disabled={isDisabled}
+                onClick={handleSubmit}>
+                SAVE
+              </button>
+            </div>
           </div>
         </div>
       </div>

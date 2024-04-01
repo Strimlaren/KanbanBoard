@@ -106,6 +106,32 @@ input:focus {
   cursor: default;
 }
 
+.buttons-div {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.del {
+  width: 35px;
+  margin-right: 5px;
+}
+
+.del svg {
+  position: absolute;
+  left: 7px;
+  top: 7px;
+  width: 15px;
+  height: 15px;
+  fill: #212121;
+}
+
+.del:hover svg {
+  /* fill: red; */
+  fill: rgba(163, 0, 0, 0.745);
+}
+
 @keyframes pulse {
   0% {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);

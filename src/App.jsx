@@ -39,6 +39,7 @@ export default function App() {
           handleToggleNewModal,
           isEditModalOpen,
           handleToggleEditModal,
+          setIsEditModalOpen,
         ]}>
         <DataContext.Provider value={[cards, setCards]}>
           <ColumnList cards={cards} />

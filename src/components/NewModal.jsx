@@ -3,7 +3,7 @@ import "../assets/styles/modal.css";
 import { CloseIcon } from "../assets/images/icons.jsx";
 import { DataContext, ModalContext } from "../App.jsx";
 
-export function NewModal() {
+export default function NewModal() {
   const [titleInput, setTitleInput] = useState("");
   const [contentInput, setContentInput] = useState("");
   const [authorInput, setAuthorInput] = useState("");
