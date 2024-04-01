@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import "../assets/styles/modal.css";
 import { CloseIcon } from "../assets/images/icons.jsx";
 import { DataContext, ModalContext } from "../App.jsx";
@@ -44,6 +44,7 @@ export function NewModal() {
         content: contentInput,
         date: getTimeStamp(),
         creator: authorInput,
+        edited: false,
       };
 
       newCards[0].cards.push(newCard);

@@ -5,6 +5,7 @@ import { CloseIcon } from "../assets/images/icons.jsx";
 
 export function EditModal() {
   const [cards, setCards] = useContext(DataContext);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [
     isNewModalOpen,
     handleToggleNewModal,
@@ -23,9 +24,11 @@ export function EditModal() {
   );
 
   function handleTitle(e) {
+    setIsDisabled(false);
     setTitleInput(e.target.value);
   }
   function handleContent(e) {
+    setIsDisabled(false);
     setContentInput(e.target.value);
   }
   function handleAuthor(e) {
@@ -51,6 +54,7 @@ export function EditModal() {
         content: contentInput,
         date: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].date,
         creator: authorInput,
+        edited: true,
       };
 
       newCards[isEditModalOpen[2]].cards[isEditModalOpen[1]] = newCard;
@@ -96,9 +100,7 @@ export function EditModal() {
             </span>
             <button
               className="add-note"
-              disabled={
-                titleInput === "" || contentInput === "" || authorInput === ""
-              }
+              disabled={isDisabled}
               onClick={handleSubmit}>
               SAVE
             </button>
