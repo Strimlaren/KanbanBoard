@@ -9,7 +9,7 @@ export const DataContext = createContext();
 
 export default function App() {
   const storedCardsJSON = localStorage.getItem("data");
-  const storedCards = storedCardsJSON ? JSON.parse(storedCardsJSON) : [];
+  const storedCards = storedCardsJSON ? JSON.parse(storedCardsJSON) : carddata;
 
   const [cards, setCards] = useState(storedCards);
   const [isNewModalOpen, setIsNewModalOpen] = useState(false);

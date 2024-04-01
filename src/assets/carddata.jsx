@@ -3,16 +3,11 @@ export let carddata = [
     columnTitle: "To Do",
     cards: [
       {
-        cardTitle: "Fuck your mom",
-        content: "I need to go to your home and fuck a goat",
+        cardTitle: "Add a Todo",
+        content:
+          "Click the button above next to the title to bring up a modal for adding new todos.",
         date: "2024-03-24",
-        creator: "Mirza",
-      },
-      {
-        cardTitle: "Fuck your dad",
-        content: "I need to remember to bring lotion",
-        date: "2024-03-21",
-        creator: "Mirza",
+        creator: "Strimlaren",
       },
     ],
   },
@@ -20,16 +15,18 @@ export let carddata = [
     columnTitle: "Doing",
     cards: [
       {
-        cardTitle: "Mow the lawn",
-        content: "Remember to sharpen the blades",
+        cardTitle: "Finish tasks",
+        content:
+          "When tasks are finished in a column, hover over the finished task to bring up the controls.",
         date: "2024-02-01",
-        creator: "Tarik",
+        creator: "Strimlaren",
       },
       {
-        cardTitle: "Drink coca-cola",
-        content: "Make sure they are put in the freezer well before drinking.",
+        cardTitle: "Edit, delete, move",
+        content:
+          "Move back todos with the back button, delete notes with the trash button, or move them forward by the checkbutton.",
         date: "2024-03-26",
-        creator: "Tarik",
+        creator: "Strimlaren",
       },
     ],
   },
@@ -37,16 +34,11 @@ export let carddata = [
     columnTitle: "Done",
     cards: [
       {
-        cardTitle: "Wipe my ass",
-        content: "Dont use the sandpaper. Use the toilet paper instead.",
+        cardTitle: "Finish your stuff",
+        content:
+          "Tasks in the last column with effectively be deleted if finished with the checkbox button.",
         date: "2024-03-21",
-        creator: "Mirza",
-      },
-      {
-        cardTitle: "Kill neigbours dog",
-        content: "Bring scissors, hammer and a huge rock.",
-        date: "2022-10-12",
-        creator: "Edina",
+        creator: "Strimlaren",
       },
     ],
   },
