@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import "./App.css";
 import ColumnList from "./components/ColumnList";
 import { carddata } from "./assets/carddata.jsx";
@@ -10,14 +10,17 @@ export const DataContext = createContext();
 export default function App() {
   const [cards, setCards] = useState(carddata);
   const [isNewModalOpen, setIsNewModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState([false, null, null]);
 
   function handleToggleNewModal() {
     setIsNewModalOpen((prevState) => !prevState);
   }
 
-  function handleToggleEditModal() {
-    setIsEditModalOpen((prevState) => !prevState);
+  function handleToggleEditModal(
+    index = isEditModalOpen[1],
+    colpos = isEditModalOpen[2]
+  ) {
+    setIsEditModalOpen((prevState) => [!prevState[0], index, colpos]);
   }
 
   return (

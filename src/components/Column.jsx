@@ -6,7 +6,7 @@ import { EditModal } from "./EditModal.jsx";
 import { AddNewIcon } from "../assets/images/icons.jsx";
 
 export default function Column({ card, colpos }) {
-  const [cards, setCards] = useContext(DataContext);
+  // const [cards, setCards] = useContext(DataContext);
   const [
     isNewModalOpen,
     handleToggleNewModal,
@@ -17,8 +17,7 @@ export default function Column({ card, colpos }) {
   return (
     <>
       {isNewModalOpen && <NewModal />}
-      {isEditModalOpen && <EditModal index={index} colpos={colpos} />}
-      {/* {isEditModalOpen && <EditModal card={card} />} */}
+      {isEditModalOpen[0] && <EditModal />}
       <div className="column">
         <div className="column-title">
           {card.columnTitle}
@@ -41,6 +40,7 @@ export default function Column({ card, colpos }) {
                 content={cardx.content}
                 creator={cardx.creator}
                 date={cardx.date}
+                edited={false}
               />
             );
           })}

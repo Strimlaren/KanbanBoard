@@ -3,8 +3,7 @@ import { DataContext, ModalContext } from "../App.jsx";
 import "../assets/styles/modal.css";
 import { CloseIcon } from "../assets/images/icons.jsx";
 
-export function EditModal({ index, colpos }) {
-  // console.log(card);
+export function EditModal() {
   const [cards, setCards] = useContext(DataContext);
   const [
     isNewModalOpen,
@@ -14,18 +13,14 @@ export function EditModal({ index, colpos }) {
   ] = useContext(ModalContext);
 
   const [titleInput, setTitleInput] = useState(
-    cards[colpos].cards[index].cardTitle
+    cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].cardTitle
   );
   const [contentInput, setContentInput] = useState(
-    cards[colpos].cards[index].content
+    cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].content
   );
   const [authorInput, setAuthorInput] = useState(
-    cards[colpos].cards[index].creator
+    cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].creator
   );
-
-  useEffect(() => {
-    handleToggleEditModal();
-  }, [cards]);
 
   function handleTitle(e) {
     setTitleInput(e.target.value);
@@ -58,7 +53,7 @@ export function EditModal({ index, colpos }) {
         creator: authorInput,
       };
 
-      newCards[colpos].cards[index] = newCard;
+      newCards[isEditModalOpen[2]].cards[isEditModalOpen[1]] = newCard;
       handleToggleEditModal();
       return newCards;
     });
@@ -102,7 +97,7 @@ export function EditModal({ index, colpos }) {
                 titleInput === "" || contentInput === "" || authorInput === ""
               }
               onClick={handleSubmit}>
-              EDIT
+              SAVE
             </button>
           </div>
         </div>

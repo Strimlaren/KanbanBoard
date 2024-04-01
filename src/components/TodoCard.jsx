@@ -6,7 +6,6 @@ import {
 } from "../assets/images/icons.jsx";
 import { useContext } from "react";
 import { DataContext, ModalContext } from "../App.jsx";
-import { EditModal } from "./EditModal.jsx";
 
 export default function TodoCard({ index, colpos }) {
   const [cards, setCards] = useContext(DataContext);
@@ -76,7 +75,7 @@ export default function TodoCard({ index, colpos }) {
   }
 
   function handleEdit() {
-    handleToggleEditModal();
+    handleToggleEditModal(index, colpos);
   }
 
   return (
