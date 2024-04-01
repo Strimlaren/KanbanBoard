@@ -1,12 +1,11 @@
 import { useContext } from "react";
-import { DataContext, ModalContext } from "../App.jsx";
+import { ModalContext } from "../App.jsx";
 import TodoCard from "./TodoCard";
 import { NewModal } from "./NewModal.jsx";
 import { EditModal } from "./EditModal.jsx";
 import { AddNewIcon } from "../assets/images/icons.jsx";
 
 export default function Column({ card, colpos }) {
-  // const [cards, setCards] = useContext(DataContext);
   const [
     isNewModalOpen,
     handleToggleNewModal,
