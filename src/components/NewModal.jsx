@@ -15,10 +15,6 @@ export function NewModal() {
     handleToggleEditModal,
   ] = useContext(ModalContext);
 
-  useEffect(() => {
-    handleToggleNewModal();
-  }, [cards]);
-
   function handleTitle(e) {
     setTitleInput(e.target.value);
   }
@@ -51,6 +47,7 @@ export function NewModal() {
       };
 
       newCards[0].cards.push(newCard);
+      handleToggleNewModal();
       return newCards;
     });
   }
