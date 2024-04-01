@@ -100,8 +100,8 @@ input:focus {
 }
 
 .add-note:disabled {
-  background-color: rgb(51, 51, 51);
-  color: rgb(163, 0, 0);
+  background-color: rgba(53, 53, 53, 0.562);
+  color: rgba(163, 0, 0, 0.582);
   box-shadow: none;
   cursor: default;
 }

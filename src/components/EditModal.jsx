@@ -52,7 +52,7 @@ export function EditModal() {
       const newCard = {
         cardTitle: titleInput,
         content: contentInput,
-        date: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].date,
+        date: getTimeStamp(),
         creator: authorInput,
         edited: true,
       };
