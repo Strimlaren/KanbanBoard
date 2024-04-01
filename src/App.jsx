@@ -8,7 +8,10 @@ export const ModalContext = createContext();
 export const DataContext = createContext();
 
 export default function App() {
-  const [cards, setCards] = useState(carddata);
+  const storedCardsJSON = localStorage.getItem("data");
+  const storedCards = storedCardsJSON ? JSON.parse(storedCardsJSON) : [];
+
+  const [cards, setCards] = useState(storedCards);
   const [isNewModalOpen, setIsNewModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState([false, null, null]);
 
@@ -22,6 +25,10 @@ export default function App() {
   ) {
     setIsEditModalOpen((prevState) => [!prevState[0], index, colpos]);
   }
+
+  useEffect(() => {
+    localStorage.setItem("data", JSON.stringify(cards));
+  }, [cards]);
 
   return (
     <>

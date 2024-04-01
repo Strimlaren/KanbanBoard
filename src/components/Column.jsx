@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { DataContext, ModalContext } from "../App.jsx";
 import TodoCard from "./TodoCard";
-import { NewModal } from "./NewEditModal.jsx";
+import { NewModal } from "./NewModal.jsx";
 import { EditModal } from "./EditModal.jsx";
 import { AddNewIcon } from "../assets/images/icons.jsx";
 
