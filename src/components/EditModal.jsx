@@ -14,31 +14,24 @@ export default function EditModal() {
     setIsEditModalOpen,
   ] = useContext(ModalContext);
 
-  const [titleInput, setTitleInput] = useState(
-    cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].cardTitle
-  );
-  const [contentInput, setContentInput] = useState(
-    cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].content
-  );
-  const [authorInput, setAuthorInput] = useState(
-    cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].creator
-  );
+  const [userInputs, setUserInputs] = useState({
+    title: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].cardTitle,
+    content: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].content,
+    creator: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].creator,
+  });
 
-  // useEffect(() => {
-  //   setIsEditModalOpen([true]);
-  // }, []);
-  console.log();
+  useEffect(() => {
+    setIsEditModalOpen([true, isEditModalOpen[1], isEditModalOpen[2]]);
+  }, []);
 
-  function handleTitle(e) {
+  console.log(isEditModalOpen);
+
+  function handleContentChange(e) {
     setIsDisabled(false);
-    setTitleInput(e.target.value);
-  }
-  function handleContent(e) {
-    setIsDisabled(false);
-    setContentInput(e.target.value);
-  }
-  function handleAuthor(e) {
-    setAuthorInput(e.target.value);
+    setUserInputs((prevInputs) => ({
+      ...prevInputs,
+      [e.target.name]: e.target.value,
+    }));
   }
   function getTimeStamp() {
     const today = new Date();
@@ -56,10 +49,10 @@ export default function EditModal() {
       }));
 
       const newCard = {
-        cardTitle: titleInput,
-        content: contentInput,
+        cardTitle: userInputs.title,
+        content: userInputs.content,
         date: getTimeStamp(),
-        creator: authorInput,
+        creator: userInputs.creator,
         edited: true,
       };
 
@@ -83,6 +76,7 @@ export default function EditModal() {
       return newCards;
     });
   }
+
   return (
     <div className="modal-dimmer">
       <div className="modal-body">
@@ -95,16 +89,18 @@ export default function EditModal() {
             type="text"
             placeholder="Enter task title here"
             required
-            onChange={handleTitle}
-            value={titleInput}
+            name="title"
+            onChange={handleContentChange}
+            value={userInputs.title}
           />
           <textarea
             type="text"
             placeholder="Enter task content here"
             spellCheck="false"
             required
-            onChange={handleContent}
-            value={contentInput}></textarea>
+            name="content"
+            onChange={handleContentChange}
+            value={userInputs.content}></textarea>
           <div className="modal-footer">
             <div>
               <span className="time-stamp">By: </span>
@@ -112,7 +108,7 @@ export default function EditModal() {
                 type="text"
                 style={{ width: "50%" }}
                 disabled
-                value={authorInput}
+                value={userInputs.creator}
               />
             </div>
             <span className="time-stamp">

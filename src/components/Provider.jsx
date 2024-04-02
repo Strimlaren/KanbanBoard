@@ -22,6 +22,7 @@ export default function Provider({ children }) {
     colpos = isEditModalOpen[2]
   ) {
     setIsEditModalOpen((prevState) => [!prevState[0], index, colpos]);
+    console.log("state after toggle: " + index + " " + colpos);
   }
 
   useEffect(() => {
