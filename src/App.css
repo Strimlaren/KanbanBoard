@@ -88,6 +88,7 @@ h1 {
   background-color: #212121;
   padding: 0.5rem 0.5rem 0.2rem 0.5rem;
   box-shadow: 0 0 4px 1px #212121;
+  position: relative;
 }
 
 .todo-card h3 {
@@ -123,12 +124,34 @@ h1 {
 .icon-container {
   position: absolute;
   right: 0;
-  bottom: -5px;
+  bottom: -3px;
+  display: none;
+}
+
+.lateral-icons-container {
+  position: absolute;
+  right: 2px;
+  top: 0;
   display: none;
 }
 
 .todo-card:hover .icon-container {
   display: block;
+}
+
+.todo-card:hover .lateral-icons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow-height {
+  height: 10px;
+}
+
+.arrow-height svg {
+  width: 20px;
 }
 
 svg {

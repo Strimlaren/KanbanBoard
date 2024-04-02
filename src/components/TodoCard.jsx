@@ -3,6 +3,8 @@ import {
   EditIcon,
   DoneIcon,
   ReturnIcon,
+  ArrowUp,
+  ArrowDown,
 } from "../assets/images/icons.jsx";
 import { useContext } from "react";
 import { DataContext, ModalContext } from "./Provider.jsx";
@@ -76,9 +78,30 @@ export default function TodoCard({ index, colpos }) {
     handleToggleEditModal(index, colpos);
   }
 
+  function handleMoveDown() {}
+
+  function handleMoveUp() {}
+
   return (
     <>
       <div className="todo-card">
+        <div className="lateral-icons-container">
+          {index === 0 ? (
+            <span className="arrow-height"></span>
+          ) : (
+            <span onClick={handleMoveDown} className="arrow-height">
+              <ArrowUp />
+            </span>
+          )}
+          {index > cards[colpos].cards.length ||
+          index === cards[colpos].cards.length - 1 ? (
+            <span className="arrow-height"></span>
+          ) : (
+            <span onClick={handleMoveUp} className="arrow-height">
+              <ArrowDown />
+            </span>
+          )}
+        </div>
         <h3>{cards[colpos].cards[index].cardTitle}</h3>
         <div className="p-content-div">
           <p>{cards[colpos].cards[index].content}</p>
