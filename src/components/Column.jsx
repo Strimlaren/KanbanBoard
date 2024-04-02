@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ModalContext } from "../App.jsx";
+import { ModalContext } from "./Provider.jsx";
 import TodoCard from "./TodoCard";
 import NewModal from "./NewModal.jsx";
 import EditModal from "./EditModal.jsx";

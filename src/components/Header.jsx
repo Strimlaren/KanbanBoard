@@ -1,8 +1,8 @@
-export default function Header() {
+export default function Header({ children }) {
   return (
     <header>
       <div className="header-backdrop">
-        <h1>MMC Kanban Board</h1>
+        <h1>{children}</h1>
       </div>
     </header>
   );

@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import "../assets/styles/modal.css";
 import { CloseIcon } from "../assets/images/icons.jsx";
-import { DataContext, ModalContext } from "../App.jsx";
+import { DataContext, ModalContext } from "./Provider.jsx";
 
 export default function NewModal() {
   const [titleInput, setTitleInput] = useState("");

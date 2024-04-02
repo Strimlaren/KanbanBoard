@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { DataContext, ModalContext } from "../App.jsx";
+import { DataContext, ModalContext } from "./Provider.jsx";
 import "../assets/styles/modal.css";
 import { CloseIcon, TrashIcon } from "../assets/images/icons.jsx";
 
@@ -24,9 +24,10 @@ export default function EditModal() {
     cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].creator
   );
 
-  useEffect(() => {
-    setIsEditModalOpen([true]);
-  }, []);
+  // useEffect(() => {
+  //   setIsEditModalOpen([true]);
+  // }, []);
+  console.log();
 
   function handleTitle(e) {
     setIsDisabled(false);
