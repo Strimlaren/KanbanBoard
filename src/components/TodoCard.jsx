@@ -78,9 +78,35 @@ export default function TodoCard({ index, colpos }) {
     handleToggleEditModal(index, colpos);
   }
 
-  function handleMoveDown() {}
+  function handleMoveDown() {
+    setCards((prevCards) => {
+      const newCards = prevCards.map((column) => ({
+        ...column,
+        cards: column.cards.map((card) => ({ ...card })),
+      }));
 
-  function handleMoveUp() {}
+      const tempCard = newCards[colpos].cards[index + 1];
+      newCards[colpos].cards[index + 1] = newCards[colpos].cards[index];
+      newCards[colpos].cards[index] = tempCard;
+
+      return newCards;
+    });
+  }
+
+  function handleMoveUp() {
+    setCards((prevCards) => {
+      const newCards = prevCards.map((column) => ({
+        ...column,
+        cards: column.cards.map((card) => ({ ...card })),
+      }));
+
+      const tempCard = newCards[colpos].cards[index - 1];
+      newCards[colpos].cards[index - 1] = newCards[colpos].cards[index];
+      newCards[colpos].cards[index] = tempCard;
+
+      return newCards;
+    });
+  }
 
   return (
     <>
@@ -89,7 +115,7 @@ export default function TodoCard({ index, colpos }) {
           {index === 0 ? (
             <span className="arrow-height"></span>
           ) : (
-            <span onClick={handleMoveDown} className="arrow-height">
+            <span onClick={handleMoveUp} className="arrow-height">
               <ArrowUp />
             </span>
           )}
@@ -97,7 +123,7 @@ export default function TodoCard({ index, colpos }) {
           index === cards[colpos].cards.length - 1 ? (
             <span className="arrow-height"></span>
           ) : (
-            <span onClick={handleMoveUp} className="arrow-height">
+            <span onClick={handleMoveDown} className="arrow-height">
               <ArrowDown />
             </span>
           )}
