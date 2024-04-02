@@ -23,10 +23,7 @@ export default function EditModal() {
   const [authorInput, setAuthorInput] = useState(
     cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].creator
   );
-
-  useEffect(() => {
-    setIsEditModalOpen([true]);
-  }, []);
+  console.log(isEditModalOpen);
 
   function handleTitle(e) {
     setIsDisabled(false);
