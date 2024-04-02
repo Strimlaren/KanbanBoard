@@ -17,12 +17,10 @@ export default function Provider({ children }) {
     setIsNewModalOpen((prevState) => !prevState);
   }
 
-  function handleToggleEditModal(
-    index = isEditModalOpen[1],
-    colpos = isEditModalOpen[2]
-  ) {
-    setIsEditModalOpen((prevState) => [!prevState[0], index, colpos]);
-    console.log("state after toggle: " + index + " " + colpos);
+  function handleToggleEditModal(index, colpos) {
+    if (index !== undefined && colpos !== undefined)
+      setIsEditModalOpen((prevState) => [!prevState[0], index, colpos]);
+    else setIsEditModalOpen([false, null, null]);
   }
 
   useEffect(() => {

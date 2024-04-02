@@ -13,18 +13,11 @@ export default function EditModal() {
     handleToggleEditModal,
     setIsEditModalOpen,
   ] = useContext(ModalContext);
-
   const [userInputs, setUserInputs] = useState({
     title: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].cardTitle,
     content: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].content,
     creator: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].creator,
   });
-
-  useEffect(() => {
-    setIsEditModalOpen([true, isEditModalOpen[1], isEditModalOpen[2]]);
-  }, []);
-
-  console.log(isEditModalOpen);
 
   function handleContentChange(e) {
     setIsDisabled(false);

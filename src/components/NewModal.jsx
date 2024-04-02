@@ -4,13 +4,12 @@ import { CloseIcon } from "../assets/images/icons.jsx";
 import { DataContext, ModalContext } from "./Provider.jsx";
 
 export default function NewModal() {
+  const [cards, setCards] = useContext(DataContext);
   const [userInputs, setUserInputs] = useState({
     title: "",
     content: "",
     creator: "",
   });
-
-  const [cards, setCards] = useContext(DataContext);
   const [
     isNewModalOpen,
     handleToggleNewModal,
@@ -18,23 +17,12 @@ export default function NewModal() {
     handleToggleEditModal,
   ] = useContext(ModalContext);
 
-  function handleTitle(e) {
-    setTitleInput(e.target.value);
-  }
-  function handleContent(e) {
-    setContentInput(e.target.value);
-  }
-  function handleAuthor(e) {
-    setAuthorInput(e.target.value);
-  }
-
   function handleContentChange(e) {
     setUserInputs((prevInputs) => ({
       ...prevInputs,
       [e.target.name]: e.target.value,
     }));
   }
-
   function getTimeStamp() {
     const today = new Date();
     const year = today.getFullYear();
