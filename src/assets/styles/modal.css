@@ -171,21 +171,21 @@ input:disabled {
 .content-char-counter,
 .creator-char-counter {
   position: absolute;
-  right: 20px;
-  top: 61px;
+  right: 13px;
+  top: 54px;
   font-size: 0.9rem;
   color: #565656;
   display: none;
 }
 
 .content-char-counter {
-  right: 20px;
-  top: 162px;
+  right: 13px;
+  top: 156px;
 }
 
 .creator-char-counter {
-  right: 205px;
-  top: 197px;
+  right: 198px;
+  top: 189px;
 }
 
 .user-title:focus+.title-char-counter,
