@@ -6,7 +6,7 @@ export let carddata = [
         cardTitle: "Add a Todo",
         content:
           "Click the button above next to the title to bring up a modal for adding new todos.",
-        date: "2024-03-24",
+        date: "1986-12-04",
         creator: "Strimlaren",
         edited: false,
       },
@@ -19,7 +19,7 @@ export let carddata = [
         cardTitle: "Finish tasks",
         content:
           "When tasks are finished in a column, hover over the finished task to bring up the controls.",
-        date: "2024-02-01",
+        date: "1987-05-23",
         creator: "Strimlaren",
         edited: false,
       },
@@ -27,7 +27,7 @@ export let carddata = [
         cardTitle: "Edit, delete, move",
         content:
           "Move back todos with the back button, delete notes with the trash button, or move them forward by the checkbutton.",
-        date: "2024-03-26",
+        date: "2019-05-08",
         creator: "Strimlaren",
         edited: false,
       },
@@ -40,7 +40,7 @@ export let carddata = [
         cardTitle: "Finish your stuff",
         content:
           "Tasks in the last column with effectively be deleted if finished with the checkbox button.",
-        date: "2024-03-21",
+        date: "2021-08-01",
         creator: "Strimlaren",
         edited: false,
       },

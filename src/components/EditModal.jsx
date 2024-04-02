@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { DataContext, ModalContext } from "../App.jsx";
+import { useContext, useState } from "react";
+import { DataContext, ModalContext } from "./Provider.jsx";
 import "../assets/styles/modal.css";
 import { CloseIcon, TrashIcon } from "../assets/images/icons.jsx";
 
@@ -13,28 +13,18 @@ export default function EditModal() {
     handleToggleEditModal,
     setIsEditModalOpen,
   ] = useContext(ModalContext);
+  const [userInputs, setUserInputs] = useState({
+    title: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].cardTitle,
+    content: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].content,
+    creator: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].creator,
+  });
 
-  const [titleInput, setTitleInput] = useState(
-    cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].cardTitle
-  );
-  const [contentInput, setContentInput] = useState(
-    cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].content
-  );
-  const [authorInput, setAuthorInput] = useState(
-    cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].creator
-  );
-  console.log(isEditModalOpen);
-
-  function handleTitle(e) {
+  function handleContentChange(e) {
     setIsDisabled(false);
-    setTitleInput(e.target.value);
-  }
-  function handleContent(e) {
-    setIsDisabled(false);
-    setContentInput(e.target.value);
-  }
-  function handleAuthor(e) {
-    setAuthorInput(e.target.value);
+    setUserInputs((prevInputs) => ({
+      ...prevInputs,
+      [e.target.name]: e.target.value,
+    }));
   }
   function getTimeStamp() {
     const today = new Date();
@@ -52,10 +42,10 @@ export default function EditModal() {
       }));
 
       const newCard = {
-        cardTitle: titleInput,
-        content: contentInput,
+        cardTitle: userInputs.title,
+        content: userInputs.content,
         date: getTimeStamp(),
-        creator: authorInput,
+        creator: userInputs.creator,
         edited: true,
       };
 
@@ -79,6 +69,7 @@ export default function EditModal() {
       return newCards;
     });
   }
+
   return (
     <div className="modal-dimmer">
       <div className="modal-body">
@@ -91,16 +82,18 @@ export default function EditModal() {
             type="text"
             placeholder="Enter task title here"
             required
-            onChange={handleTitle}
-            value={titleInput}
+            name="title"
+            onChange={handleContentChange}
+            value={userInputs.title}
           />
           <textarea
             type="text"
             placeholder="Enter task content here"
             spellCheck="false"
             required
-            onChange={handleContent}
-            value={contentInput}></textarea>
+            name="content"
+            onChange={handleContentChange}
+            value={userInputs.content}></textarea>
           <div className="modal-footer">
             <div>
               <span className="time-stamp">By: </span>
@@ -108,7 +101,7 @@ export default function EditModal() {
                 type="text"
                 style={{ width: "50%" }}
                 disabled
-                value={authorInput}
+                value={userInputs.creator}
               />
             </div>
             <span className="time-stamp">

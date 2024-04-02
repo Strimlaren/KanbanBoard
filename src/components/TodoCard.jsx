@@ -3,9 +3,11 @@ import {
   EditIcon,
   DoneIcon,
   ReturnIcon,
+  ArrowUp,
+  ArrowDown,
 } from "../assets/images/icons.jsx";
 import { useContext } from "react";
-import { DataContext, ModalContext } from "../App.jsx";
+import { DataContext, ModalContext } from "./Provider.jsx";
 
 export default function TodoCard({ index, colpos }) {
   const [cards, setCards] = useContext(DataContext);
@@ -76,9 +78,56 @@ export default function TodoCard({ index, colpos }) {
     handleToggleEditModal(index, colpos);
   }
 
+  function handleMoveDown() {
+    setCards((prevCards) => {
+      const newCards = prevCards.map((column) => ({
+        ...column,
+        cards: column.cards.map((card) => ({ ...card })),
+      }));
+
+      const tempCard = newCards[colpos].cards[index + 1];
+      newCards[colpos].cards[index + 1] = newCards[colpos].cards[index];
+      newCards[colpos].cards[index] = tempCard;
+
+      return newCards;
+    });
+  }
+
+  function handleMoveUp() {
+    setCards((prevCards) => {
+      const newCards = prevCards.map((column) => ({
+        ...column,
+        cards: column.cards.map((card) => ({ ...card })),
+      }));
+
+      const tempCard = newCards[colpos].cards[index - 1];
+      newCards[colpos].cards[index - 1] = newCards[colpos].cards[index];
+      newCards[colpos].cards[index] = tempCard;
+
+      return newCards;
+    });
+  }
+
   return (
     <>
       <div className="todo-card">
+        <div className="lateral-icons-container">
+          {index === 0 ? (
+            <span className="arrow-height"></span>
+          ) : (
+            <span onClick={handleMoveUp} className="arrow-height">
+              <ArrowUp />
+            </span>
+          )}
+          {index > cards[colpos].cards.length ||
+          index === cards[colpos].cards.length - 1 ? (
+            <span className="arrow-height"></span>
+          ) : (
+            <span onClick={handleMoveDown} className="arrow-height">
+              <ArrowDown />
+            </span>
+          )}
+        </div>
         <h3>{cards[colpos].cards[index].cardTitle}</h3>
         <div className="p-content-div">
           <p>{cards[colpos].cards[index].content}</p>

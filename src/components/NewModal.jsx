@@ -1,13 +1,15 @@
 import { useState, useContext } from "react";
 import "../assets/styles/modal.css";
 import { CloseIcon } from "../assets/images/icons.jsx";
-import { DataContext, ModalContext } from "../App.jsx";
+import { DataContext, ModalContext } from "./Provider.jsx";
 
 export default function NewModal() {
-  const [titleInput, setTitleInput] = useState("");
-  const [contentInput, setContentInput] = useState("");
-  const [authorInput, setAuthorInput] = useState("");
   const [cards, setCards] = useContext(DataContext);
+  const [userInputs, setUserInputs] = useState({
+    title: "",
+    content: "",
+    creator: "",
+  });
   const [
     isNewModalOpen,
     handleToggleNewModal,
@@ -15,14 +17,11 @@ export default function NewModal() {
     handleToggleEditModal,
   ] = useContext(ModalContext);
 
-  function handleTitle(e) {
-    setTitleInput(e.target.value);
-  }
-  function handleContent(e) {
-    setContentInput(e.target.value);
-  }
-  function handleAuthor(e) {
-    setAuthorInput(e.target.value);
+  function handleContentChange(e) {
+    setUserInputs((prevInputs) => ({
+      ...prevInputs,
+      [e.target.name]: e.target.value,
+    }));
   }
   function getTimeStamp() {
     const today = new Date();
@@ -40,10 +39,10 @@ export default function NewModal() {
       }));
 
       const newCard = {
-        cardTitle: titleInput,
-        content: contentInput,
+        cardTitle: userInputs.title,
+        content: userInputs.content,
         date: getTimeStamp(),
-        creator: authorInput,
+        creator: userInputs.creator,
         edited: false,
       };
 
@@ -65,30 +64,35 @@ export default function NewModal() {
             type="text"
             placeholder="Enter task title here"
             required
-            onChange={handleTitle}
-            value={titleInput}
+            name="title"
+            onChange={handleContentChange}
+            value={userInputs.title}
           />
           <textarea
             type="text"
             placeholder="Enter task content here"
             spellCheck="false"
             required
-            onChange={handleContent}
-            value={contentInput}></textarea>
+            name="content"
+            onChange={handleContentChange}
+            value={userInputs.content}></textarea>
           <div className="modal-footer">
             <input
               type="text"
               placeholder="Authored by..."
               style={{ width: "50%" }}
               required
-              onChange={handleAuthor}
-              value={authorInput}
+              name="creator"
+              onChange={handleContentChange}
+              value={userInputs.creator}
             />
             <span className="time-stamp">{getTimeStamp()}</span>
             <button
               className="add-note"
               disabled={
-                titleInput === "" || contentInput === "" || authorInput === ""
+                userInputs.title === "" ||
+                userInputs.content === "" ||
+                userInputs.creator === ""
               }
               onClick={handleSubmit}>
               ADD
