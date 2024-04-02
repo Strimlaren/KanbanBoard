@@ -34,6 +34,22 @@
   padding: 0.5rem 0.5rem 0.2rem 0.5rem;
   box-shadow: 0 0 4px 1px #212121;
   gap: 4px;
+  position: relative;
+}
+
+.modal-column-title {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 6px 10px 5px 10px;
+  border-radius: 8px;
+  background-color: #383838;
+  font-size: 0.8rem;
+  box-shadow: 0 0 2px 2px #00000088 inset;
+  color: #13a9b7;
+  /* color: #212121; */
+  text-transform: uppercase;
+  ;
 }
 
 .modal-inner h4 {

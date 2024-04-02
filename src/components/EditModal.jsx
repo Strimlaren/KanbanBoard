@@ -84,6 +84,9 @@ export default function EditModal() {
           <CloseIcon />
         </span>
         <div className="modal-inner">
+          <span className="modal-column-title">
+            {cards[isEditModalOpen[2]].columnTitle}
+          </span>
           <h4>EDIT TASK</h4>
           <input
             type="text"
