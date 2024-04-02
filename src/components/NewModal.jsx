@@ -9,6 +9,9 @@ export default function NewModal() {
     title: "",
     content: "",
     creator: "",
+    titleChar: 0,
+    contentChar: 0,
+    creatorChar: 0,
   });
   const [
     isNewModalOpen,
@@ -21,6 +24,7 @@ export default function NewModal() {
     setUserInputs((prevInputs) => ({
       ...prevInputs,
       [e.target.name]: e.target.value,
+      [e.target.name + "Char"]: e.target.value.length,
     }));
   }
   function getTimeStamp() {
@@ -62,30 +66,63 @@ export default function NewModal() {
           <h4>ADD NEW TASK</h4>
           <input
             type="text"
+            className="user-title"
             placeholder="Enter task title here"
             required
             name="title"
+            maxLength={35}
             onChange={handleContentChange}
             value={userInputs.title}
           />
+          <span className="title-char-counter">
+            <span
+              className={
+                userInputs.titleChar > 30 ? "counter-red" : "counter-gray"
+              }>
+              {userInputs.titleChar}
+            </span>
+            /35
+          </span>
           <textarea
             type="text"
+            className="user-content"
             placeholder="Enter task content here"
             spellCheck="false"
             required
             name="content"
+            maxLength={300}
             onChange={handleContentChange}
             value={userInputs.content}></textarea>
+          <span className="content-char-counter">
+            <span
+              className={
+                userInputs.contentChar > 250 ? "counter-red" : "counter-gray"
+              }>
+              {userInputs.contentChar}
+            </span>
+            /300
+          </span>
           <div className="modal-footer">
             <input
               type="text"
+              className="user-creator"
               placeholder="Authored by..."
               style={{ width: "50%" }}
               required
               name="creator"
+              maxLength={20}
               onChange={handleContentChange}
               value={userInputs.creator}
             />
+            <span className="creator-char-counter">
+              <span
+                className={
+                  userInputs.creatorChar > 15 ? "counter-red" : "counter-gray"
+                }>
+                {userInputs.creatorChar}
+              </span>
+              /20
+            </span>
             <span className="time-stamp">{getTimeStamp()}</span>
             <button
               className="add-note"

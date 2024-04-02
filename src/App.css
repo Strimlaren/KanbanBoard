@@ -115,6 +115,7 @@ h1 {
 
 .p-content-div {
   border-bottom: 1px solid rgb(159, 159, 159, 0.2);
+  word-wrap: break-word;
 }
 
 .highlight {

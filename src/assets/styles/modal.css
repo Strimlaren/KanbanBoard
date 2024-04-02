@@ -41,6 +41,7 @@
   margin: 5px 0 13px 0;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .modal-footer {
@@ -128,7 +129,6 @@ input:focus {
 }
 
 .del:hover svg {
-  /* fill: red; */
   fill: rgba(163, 0, 0, 0.745);
 }
 
@@ -149,4 +149,39 @@ input:focus {
 input:disabled {
   background-color: transparent;
   box-shadow: none;
+}
+
+.title-char-counter,
+.content-char-counter,
+.creator-char-counter {
+  position: absolute;
+  right: 20px;
+  top: 61px;
+  font-size: 0.9rem;
+  color: #565656;
+  display: none;
+}
+
+.content-char-counter {
+  right: 20px;
+  top: 162px;
+}
+
+.creator-char-counter {
+  right: 205px;
+  top: 197px;
+}
+
+.user-title:focus+.title-char-counter,
+.user-content:focus+.content-char-counter,
+.user-creator:focus+.creator-char-counter {
+  display: inline;
+}
+
+.counter-red {
+  color: rgba(163, 0, 0, 0.582);
+}
+
+.counter-gray {
+  color: #888;
 }
