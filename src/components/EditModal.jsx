@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { DataContext, ModalContext } from "./Provider.jsx";
 import "../assets/styles/modal.css";
 import { CloseIcon, TrashIcon } from "../assets/images/icons.jsx";
