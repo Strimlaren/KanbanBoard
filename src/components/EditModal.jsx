@@ -17,6 +17,12 @@ export default function EditModal() {
     title: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].cardTitle,
     content: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].content,
     creator: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].creator,
+    titleChar:
+      cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].cardTitle.length,
+    contentChar:
+      cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].content.length,
+    creatorChar:
+      cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].creator.length,
   });
 
   function handleContentChange(e) {
@@ -24,6 +30,7 @@ export default function EditModal() {
     setUserInputs((prevInputs) => ({
       ...prevInputs,
       [e.target.name]: e.target.value,
+      [e.target.name + "Char"]: e.target.value.length,
     }));
   }
   function getTimeStamp() {
@@ -80,20 +87,42 @@ export default function EditModal() {
           <h4>EDIT TASK</h4>
           <input
             type="text"
+            className="user-title"
             placeholder="Enter task title here"
             required
             name="title"
+            maxLength={35}
             onChange={handleContentChange}
             value={userInputs.title}
           />
+          <span className="title-char-counter">
+            <span
+              className={
+                userInputs.titleChar > 29 ? "counter-red" : "counter-gray"
+              }>
+              {userInputs.titleChar}
+            </span>
+            /35
+          </span>
           <textarea
             type="text"
+            className="user-content"
             placeholder="Enter task content here"
             spellCheck="false"
             required
             name="content"
+            maxLength={300}
             onChange={handleContentChange}
             value={userInputs.content}></textarea>
+          <span className="content-char-counter">
+            <span
+              className={
+                userInputs.contentChar > 250 ? "counter-red" : "counter-gray"
+              }>
+              {userInputs.contentChar}
+            </span>
+            /300
+          </span>
           <div className="modal-footer">
             <div>
               <span className="time-stamp">By: </span>
