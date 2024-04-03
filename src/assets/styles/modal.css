@@ -48,7 +48,8 @@
   font-size: 0.8rem;
   box-shadow: 0 0 2px 1px #212121;
   color: #13a9b7;
-  letter-spacing: 2px;
+  font-weight: 900;
+  letter-spacing: 1px;
   text-transform: uppercase;
   z-index: 2;
 }
@@ -153,8 +154,9 @@ input:focus {
 }
 
 .add-note:disabled {
-  background-color: rgba(53, 53, 53, 0.562);
-  color: rgba(163, 0, 0, 0.582);
+  background-color: rgba(43, 43, 43, 0.562);
+  color: #383838;
+  /* color: rgba(163, 0, 0, 0.582); */
   box-shadow: none;
   cursor: default;
 }
