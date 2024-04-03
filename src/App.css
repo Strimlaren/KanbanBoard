@@ -141,6 +141,7 @@ h1 {
 .lateral-icons-container:hover {
   transform: scale(1.9);
   right: 4px;
+  top: 1px;
 }
 
 .todo-card:hover .icon-container {
@@ -155,7 +156,7 @@ h1 {
 }
 
 .arrow-height {
-  height: 10px;
+  height: 8px;
 }
 
 .arrow-height svg {
