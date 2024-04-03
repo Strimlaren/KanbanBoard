@@ -5,7 +5,7 @@ import NewModal from "./NewModal.jsx";
 import EditModal from "./EditModal.jsx";
 import { AddNewIcon } from "../assets/images/icons.jsx";
 
-export default function Column({ card, colpos }) {
+export default function Column({ card, colpos, nav }) {
   const [
     isNewModalOpen,
     handleToggleNewModal,
@@ -19,7 +19,12 @@ export default function Column({ card, colpos }) {
       {isEditModalOpen[0] && <EditModal />}
       <div className="column">
         <div className="column-title">
-          {card.columnTitle}
+          <span className="path">{`/col/${card.columnTitle}`}</span>
+          <h2
+            className={nav ? "column-title-link" : undefined}
+            onClick={nav ? () => nav(`/col/${card.columnTitle}`) : undefined}>
+            {card.columnTitle}
+          </h2>
           {colpos === 0 && (
             <div className="add-icon">
               <span onClick={handleToggleNewModal}>

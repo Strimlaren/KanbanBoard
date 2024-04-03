@@ -68,13 +68,38 @@ h1 {
 
 .column-title {
   margin: 8px 3px 13px 3px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.path {
+  position: absolute;
+  top: -10px;
+  font-size: 0.7rem;
+  /* color: #212121; */
+  color: #13a9b7;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+.column-title:hover .path {
+  opacity: 1;
+}
+
+.column-title h2 {
   font-family: "Kanit", sans-serif;
   font-size: 1.3rem;
   font-weight: 200;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  text-align: center;
-  position: relative;
+  transition: color 0.4s ease;
+}
+
+.column-title-link:hover {
+  color: #858585;
+  cursor: pointer;
 }
 
 .cards-container {

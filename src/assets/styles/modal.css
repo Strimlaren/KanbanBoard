@@ -126,7 +126,6 @@ input:first-of-type {
 textarea:focus,
 input:focus {
   background-color: rgb(180, 180, 180);
-
   box-shadow: 0 0 4px 5px #15151571;
   color: #181818;
 }
@@ -156,7 +155,6 @@ input:focus {
 .add-note:disabled {
   background-color: rgba(43, 43, 43, 0.562);
   color: #383838;
-  /* color: rgba(163, 0, 0, 0.582); */
   box-shadow: none;
   cursor: default;
 }
