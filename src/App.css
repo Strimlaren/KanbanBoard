@@ -132,8 +132,14 @@ h1 {
 .lateral-icons-container {
   position: absolute;
   right: 2px;
-  top: 0;
+  top: 5px;
   display: none;
+  transition: transform 0.5s;
+  /* background-color: red; */
+}
+
+.lateral-icons-container:hover {
+  transform: scale(1.9);
 }
 
 .todo-card:hover .icon-container {
@@ -164,7 +170,7 @@ svg {
 }
 
 svg:hover {
-  fill: #9f9f9f;
+  fill: #858585;
   cursor: pointer;
 }
 
