@@ -82,7 +82,9 @@ export default function EditModal() {
       <div className="modal-body">
         {/* <div className="modal-column-close-border">
           <div className="modal-column-close" onClick={handleToggleEditModal}> */}
-        <CloseIcon />
+        <span onClick={handleToggleEditModal}>
+          <CloseIcon />
+        </span>
         {/* </div>
         </div> */}
         <div className="modal-column-title-border">

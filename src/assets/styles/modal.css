@@ -173,8 +173,8 @@ input:focus {
 
 .del svg {
   position: absolute;
-  left: 7px;
-  top: 7px;
+  left: 7.5px;
+  top: 8px;
   width: 15px;
   height: 15px;
   fill: #212121;
