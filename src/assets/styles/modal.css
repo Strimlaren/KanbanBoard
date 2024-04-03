@@ -95,8 +95,8 @@ input:first-of-type {
 textarea:focus,
 input:focus {
   background-color: rgb(180, 180, 180);
-  /* box-shadow: 0 0 4px 1px #b1b1b1 inset; */
-  box-shadow: 0 0 5px 1px #000000ff inset;
+
+  box-shadow: 0 0 4px 5px #15151571;
   color: #181818;
 }
 
@@ -192,7 +192,7 @@ input:disabled {
 
 .creator-char-counter {
   right: 198px;
-  top: 189px;
+  top: 190px;
 }
 
 .user-title:focus+.title-char-counter,
