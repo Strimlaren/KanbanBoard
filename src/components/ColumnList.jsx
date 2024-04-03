@@ -9,7 +9,7 @@ export default function ColumnList() {
     <>
       <section className="column-list">
         {cards.map((card, index) => (
-          <Column card={card} key={index} colpos={index} />
+          <Column key={index} card={card} colpos={index} />
         ))}
       </section>
     </>
