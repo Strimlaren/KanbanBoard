@@ -45,6 +45,7 @@ h1 {
   font-family: "Kanit", sans-serif;
   font-weight: 100;
   letter-spacing: -1px;
+  transition: color 0.5s ease;
 }
 
 .column-list {
@@ -230,4 +231,13 @@ svg:hover {
 
 .modal-body svg:hover {
   fill: red;
+}
+
+.unedited {
+  color: whitesmoke;
+}
+
+.edited {
+  color: #13a9b7;
+  transition: color 2s ease;
 }

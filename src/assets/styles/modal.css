@@ -173,7 +173,7 @@ input:focus {
 
 .del svg {
   position: absolute;
-  left: 7.5px;
+  left: 7px;
   top: 8px;
   width: 15px;
   height: 15px;
@@ -237,13 +237,4 @@ input:disabled {
 
 .counter-gray {
   color: #888;
-}
-
-.unedited {
-  color: whitesmoke;
-}
-
-.edited {
-  color: #13a9b7;
-  transition: color 2s ease;
 }
