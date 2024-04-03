@@ -78,7 +78,7 @@ export default function NewModal() {
           <span className="title-char-counter">
             <span
               className={
-                userInputs.titleChar > 24 ? "counter-red" : "counter-gray"
+                userInputs.titleChar > 19 ? "counter-red" : "counter-gray"
               }>
               {userInputs.titleChar}
             </span>
@@ -97,7 +97,7 @@ export default function NewModal() {
           <span className="content-char-counter">
             <span
               className={
-                userInputs.contentChar > 250 ? "counter-red" : "counter-gray"
+                userInputs.contentChar > 259 ? "counter-red" : "counter-gray"
               }>
               {userInputs.contentChar}
             </span>
