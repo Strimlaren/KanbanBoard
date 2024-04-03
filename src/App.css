@@ -134,12 +134,13 @@ h1 {
   right: 2px;
   top: 5px;
   display: none;
-  transition: transform 0.5s;
+  transition: all 0.5s;
   /* background-color: red; */
 }
 
 .lateral-icons-container:hover {
   transform: scale(1.9);
+  right: 4px;
 }
 
 .todo-card:hover .icon-container {
