@@ -71,6 +71,7 @@ export default function NewModal() {
             required
             name="title"
             maxLength={25}
+            spellCheck="false"
             onChange={handleContentChange}
             value={userInputs.title}
           />
@@ -87,10 +88,10 @@ export default function NewModal() {
             type="text"
             className="user-content"
             placeholder="Enter task content here"
-            spellCheck="false"
             required
             name="content"
             maxLength={300}
+            spellCheck="false"
             onChange={handleContentChange}
             value={userInputs.content}></textarea>
           <span className="content-char-counter">
@@ -111,6 +112,7 @@ export default function NewModal() {
               required
               name="creator"
               maxLength={20}
+              spellCheck="false"
               onChange={handleContentChange}
               value={userInputs.creator}
             />

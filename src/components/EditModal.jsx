@@ -95,6 +95,7 @@ export default function EditModal() {
             required
             name="title"
             maxLength={25}
+            spellCheck="false"
             onChange={handleContentChange}
             value={userInputs.title}
           />
@@ -133,6 +134,7 @@ export default function EditModal() {
                 type="text"
                 style={{ width: "50%" }}
                 disabled
+                spellCheck="false"
                 value={userInputs.creator}
               />
             </div>

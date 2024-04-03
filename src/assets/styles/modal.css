@@ -41,13 +41,13 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  padding: 6px 10px 5px 10px;
+  padding: 6px 8px 5px 10px;
   border-radius: 8px;
   background-color: #383838;
   font-size: 0.8rem;
   box-shadow: 0 0 2px 2px #00000088 inset;
   color: #13a9b7;
-  /* color: #212121; */
+  letter-spacing: 2px;
   text-transform: uppercase;
   ;
 }
@@ -78,7 +78,8 @@ input {
   border: 0;
   outline: 0;
   padding: 0.5rem;
-  box-shadow: 0 0 2px 1px #151515 inset;
+  /* box-shadow: 0 0 2px 1px #151515 inset; */
+  box-shadow: 0 0 2px 2px #00000088 inset;
   transition: all 0.5s ease;
   resize: none;
 }
@@ -87,10 +88,15 @@ input {
   height: auto;
 }
 
+input:first-of-type {
+  margin-bottom: 2px;
+}
+
 textarea:focus,
 input:focus {
   background-color: rgb(180, 180, 180);
-  box-shadow: 0 0 4px 1px #b1b1b1 inset;
+  /* box-shadow: 0 0 4px 1px #b1b1b1 inset; */
+  box-shadow: 0 0 5px 1px #000000ff inset;
   color: #181818;
 }
 
