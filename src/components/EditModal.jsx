@@ -100,7 +100,7 @@ export default function EditModal() {
             placeholder="Enter task title here"
             required
             name="title"
-            maxLength={25}
+            maxLength={30}
             spellCheck="false"
             onChange={handleContentChange}
             value={userInputs.title}
@@ -108,11 +108,11 @@ export default function EditModal() {
           <span className="title-char-counter">
             <span
               className={
-                userInputs.titleChar > 19 ? "counter-red" : "counter-gray"
+                userInputs.titleChar > 24 ? "counter-red" : "counter-gray"
               }>
               {userInputs.titleChar}
             </span>
-            /25
+            /30
           </span>
           <textarea
             type="text"

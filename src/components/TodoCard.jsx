@@ -134,7 +134,12 @@ export default function TodoCard({ index, colpos }) {
         </div>
         <div className="card-footer">
           <p>
-            {cards[colpos].cards[index].edited ? "Edited " : "Added "}{" "}
+            <span
+              className={
+                cards[colpos].cards[index].edited ? "edited" : "unedited"
+              }>
+              {cards[colpos].cards[index].edited ? "Edited " : "Added "}
+            </span>{" "}
             {cards[colpos].cards[index].date} by{" "}
             <span className="highlight">
               {cards[colpos].cards[index].creator}

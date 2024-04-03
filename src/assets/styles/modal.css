@@ -208,7 +208,7 @@ input:disabled {
 .creator-char-counter {
   position: absolute;
   right: 13px;
-  top: 54px;
+  top: 52px;
   font-size: 0.9rem;
   color: #565656;
   display: none;
@@ -237,4 +237,13 @@ input:disabled {
 
 .counter-gray {
   color: #888;
+}
+
+.unedited {
+  color: whitesmoke;
+}
+
+.edited {
+  color: #13a9b7;
+  transition: color 2s ease;
 }
