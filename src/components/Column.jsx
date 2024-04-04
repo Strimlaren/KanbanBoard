@@ -19,12 +19,12 @@ export default function Column({ card, colpos, nav }) {
       {isEditModalOpen[0] && <EditModal />}
       <div className="column">
         <div className="column-title">
-          <span className="path">{`/col/${card.columnTitle}`}</span>
           <h2
             className={nav ? "column-title-link" : undefined}
             onClick={nav ? () => nav(`/col/${card.columnTitle}`) : undefined}>
             {card.columnTitle}
           </h2>
+          <span className="path">{`/col/${card.columnTitle}`}</span>
           {colpos === 0 && (
             <div className="add-icon">
               <span onClick={handleToggleNewModal}>

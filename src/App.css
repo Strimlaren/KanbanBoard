@@ -84,7 +84,7 @@ h1 {
   opacity: 0;
 }
 
-.column-title:hover .path {
+h2:hover+.path {
   opacity: 1;
 }
 

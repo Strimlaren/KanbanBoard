@@ -1,4 +1,5 @@
 import Column from "./Column";
+import Error from "./Error";
 import { useContext } from "react";
 import { DataContext } from "./Provider";
 import { Routes, Route, useNavigate } from "react-router-dom";
@@ -19,6 +20,7 @@ export default function RoutedColumnList() {
               />
             );
           })}
+          <Route path="*" element={<Error />} />
         </Routes>
       </section>
     </>
