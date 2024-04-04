@@ -80,13 +80,9 @@ export default function EditModal() {
   return (
     <div className="modal-dimmer">
       <div className="modal-body">
-        {/* <div className="modal-column-close-border">
-          <div className="modal-column-close" onClick={handleToggleEditModal}> */}
         <span onClick={handleToggleEditModal}>
           <CloseIcon />
         </span>
-        {/* </div>
-        </div> */}
         <div className="modal-column-title-border">
           <div className="modal-column-title">
             {cards[isEditModalOpen[2]].columnTitle}
