@@ -66,6 +66,10 @@ export default function Column({ card, colpos, nav, length, routed }) {
     });
   }
 
+  function handleKeyPress(e) {
+    if (e.key === "Enter") handleToggleEditColumnName();
+  }
+
   return (
     <>
       {isNewModalOpen && <NewModal />}
@@ -91,6 +95,7 @@ export default function Column({ card, colpos, nav, length, routed }) {
                 spellCheck={false}
                 value={cards[colpos].columnTitle}
                 onChange={handleUpdateTitle}
+                onKeyDown={handleKeyPress}
               />
             ) : (
               <h2
