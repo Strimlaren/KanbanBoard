@@ -114,6 +114,9 @@ h2:hover+.path {
   width: 200px;
   padding: 2px 5px;
   margin: 0;
+  background-color: transparent;
+  box-shadow: none;
+  color: #858585;
 }
 
 .add-icon {
