@@ -16,7 +16,7 @@ export default function RoutedColumnList() {
               <Route
                 key={index}
                 path={`/${card.columnTitle}`}
-                element={<Column card={card} colpos={index} />}
+                element={<Column card={card} colpos={index} routed={true} />}
               />
             );
           })}

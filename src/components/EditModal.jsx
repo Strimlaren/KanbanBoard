@@ -33,6 +33,7 @@ export default function EditModal() {
       [e.target.name + "Char"]: e.target.value.length,
     }));
   }
+
   function getTimeStamp() {
     const today = new Date();
     const year = today.getFullYear();
@@ -41,6 +42,7 @@ export default function EditModal() {
 
     return `${year}-${month}-${day}`;
   }
+
   function handleSubmit() {
     setCards((prevCards) => {
       let newCards = prevCards.map((column) => ({
@@ -61,6 +63,7 @@ export default function EditModal() {
       return newCards;
     });
   }
+
   function handleDelete() {
     setCards((prevCards) => {
       const newCards = prevCards.map((column) => ({

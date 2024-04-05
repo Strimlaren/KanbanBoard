@@ -92,11 +92,28 @@ h2:hover+.path {
 
 .column-title h2 {
   font-family: "Kanit", sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 200;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
   transition: color 0.4s ease;
+}
+
+.title-edit-input {
+  font-family: "Kanit", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 200;
+  padding: 2px;
+  margin: 0;
+  box-shadow: none;
+  text-align: center;
+  text-transform: uppercase;
+  transition: color 0.4s ease;
+}
+
+.title-edit-input:focus {
+  width: 200px;
+  padding: 2px 5px;
+  margin: 0;
 }
 
 .add-icon {
@@ -118,7 +135,10 @@ h2:hover+.path {
 .column-edit-button svg {
   margin: 0;
   opacity: 0;
-  transition: opacity 1s ease;
+}
+
+.w13 {
+  width: 13px;
 }
 
 .edit-title-icon {
@@ -190,7 +210,12 @@ h2:hover+.path {
   position: absolute;
   right: 0;
   bottom: -3px;
-  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.todo-card:hover .icon-container {
+  opacity: 1;
 }
 
 .lateral-icons-container {
@@ -199,17 +224,12 @@ h2:hover+.path {
   top: 5px;
   display: none;
   transition: all 0.5s;
-  /* background-color: red; */
 }
 
 .lateral-icons-container:hover {
   transform: scale(1.9);
   right: 4px;
   top: 1px;
-}
-
-.todo-card:hover .icon-container {
-  display: block;
 }
 
 .todo-card:hover .lateral-icons-container {
