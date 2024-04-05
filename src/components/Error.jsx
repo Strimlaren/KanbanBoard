@@ -13,7 +13,7 @@ export default function Error() {
       <section className="column-list">
         <div className="column">
           <div className="column-title">
-            <h2>Dear confused user</h2>
+            <h2>Cake? Sushi?</h2>
           </div>
 
           <div className="cards-container">
@@ -26,11 +26,12 @@ export default function Error() {
                   <ArrowDown />
                 </span>
               </div>
-              <h3>404 Where are you going exactly??</h3>
+              <h3>404 The cake is a lie</h3>
               <div className="p-content-div">
                 <p>
-                  I don't know what the hell you are doing and it seems neither
-                  do you. Maybe try again. Eventually you might get it right.
+                  So is the cookie. Sushi is real tho. I dont know why this is
+                  relevant, it sure as hell wont help you find what you were
+                  looking for.
                 </p>
               </div>
               <div className="card-footer">
