@@ -103,17 +103,17 @@ h2:hover+.path {
   width: 200px;
   font-size: 1.2rem;
   font-weight: 200;
-  padding: 2px;
-  height: 27px;
-  margin: 0;
+  padding: 0px;
+  height: 28px;
+  margin: 0 !important;
   box-shadow: none;
   text-align: center;
   text-transform: uppercase;
 }
 
 .title-edit-input:focus {
-  margin: 0;
-  height: 29px;
+  margin: 0 !important;
+  height: 28px;
   background-color: transparent;
   box-shadow: none;
   color: #858585;
