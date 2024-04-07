@@ -20,6 +20,8 @@ export default function Column({ card, colpos, nav, length, routed }) {
   const [cards, setCards] = useContext(DataContext);
   const [isEditing, setIsEditing] = useState(false);
   const focusInput = useRef(null);
+  const dragItem = useRef();
+  const dragOverItem = useRef();
 
   function handleMoveColumnLeft() {
     setCards((prevCards) => {
@@ -74,6 +76,37 @@ export default function Column({ card, colpos, nav, length, routed }) {
     if (e.key === "Enter") handleToggleEditColumnName();
   }
 
+  function dragStart(e) {
+    dragItem.current = e.target.id;
+    console.log("Grabbed: " + e.target.id);
+  }
+
+  function dragEnter(e) {
+    dragOverItem.current = e.currentTarget.id;
+    console.log("Hovering: " + dragOverItem.current);
+  }
+
+  function dragEnd() {
+    setCards((prevCards) => {
+      const newCards = prevCards.map((column) => ({
+        ...column,
+        cards: column.cards.map((card) => ({ ...card })),
+      }));
+
+      console.log("State of startDrag @ end of drag: " + dragItem.current);
+      console.log("State of dragOver @ end of drag: " + dragOverItem.current);
+
+      const tempColumn = newCards[dragOverItem.current];
+      newCards[dragOverItem.current] = newCards[dragItem.current];
+      newCards[dragItem.current] = tempColumn;
+
+      dragItem.current = null;
+      dragOverItem.current = null;
+
+      return newCards;
+    });
+  }
+
   useEffect(() => {
     if (focusInput.current) {
       focusInput.current.focus();
@@ -84,7 +117,13 @@ export default function Column({ card, colpos, nav, length, routed }) {
     <>
       {isNewModalOpen && <NewModal />}
       {isEditModalOpen[0] && <EditModal />}
-      <div className="column" draggable={true}>
+      <div
+        id={colpos}
+        className="column"
+        draggable
+        onDragStart={dragStart}
+        onDragOver={dragEnter}
+        onDragEnd={dragEnd}>
         <div className="column-title">
           {colpos !== 0 && !routed && !isEditing ? (
             <span

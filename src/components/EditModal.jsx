@@ -3,8 +3,10 @@ import { DataContext, ModalContext } from "./Provider.jsx";
 import "../assets/styles/modal.css";
 import { CloseIcon, TrashIcon } from "../assets/images/icons.jsx";
 
+/* Handles the modal that allows for editing of card-content. */
 export default function EditModal() {
   const [cards, setCards] = useContext(DataContext);
+  /* Makes the SAVE-button disabled until some content was changed. Can be done without a state */
   const [isDisabled, setIsDisabled] = useState(true);
   const [
     isNewModalOpen,
@@ -13,6 +15,7 @@ export default function EditModal() {
     handleToggleEditModal,
     setIsEditModalOpen,
   ] = useContext(ModalContext);
+  /* State that keeps all current form-data and the length of their current content */
   const [userInputs, setUserInputs] = useState({
     title: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].cardTitle,
     content: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].content,
@@ -24,7 +27,7 @@ export default function EditModal() {
     creatorChar:
       cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].creator.length,
   });
-
+  /* Universal function to update userInput state with any and all user inputs, using the html name-attribute */
   function handleContentChange(e) {
     setIsDisabled(false);
     setUserInputs((prevInputs) => ({
@@ -42,7 +45,7 @@ export default function EditModal() {
 
     return `${year}-${month}-${day}`;
   }
-
+  /* Saves the changes of this card to the cards-state and closes the modal */
   function handleSubmit() {
     setCards((prevCards) => {
       let newCards = prevCards.map((column) => ({
