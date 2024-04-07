@@ -8,7 +8,7 @@ import {
 } from "../assets/images/icons.jsx";
 import { useContext } from "react";
 import { DataContext, ModalContext } from "./Provider.jsx";
-
+/* Creates each todo-task */
 export default function TodoCard({ index, colpos }) {
   const [cards, setCards] = useContext(DataContext);
   const [
@@ -18,6 +18,7 @@ export default function TodoCard({ index, colpos }) {
     handleToggleEditModal,
   ] = useContext(ModalContext);
 
+  /* Filters unwanted todo-card from the array of cards. */
   function handleDelete() {
     setCards((prevCards) => {
       const newCards = prevCards.map((column) => ({
@@ -32,7 +33,7 @@ export default function TodoCard({ index, colpos }) {
       return newCards;
     });
   }
-
+  /* Move card to column on the right. */
   function handleMoveRight() {
     setCards((prevCards) => {
       let newCards = prevCards.map((column) => ({
@@ -53,7 +54,7 @@ export default function TodoCard({ index, colpos }) {
       return newCards;
     });
   }
-
+  /* Move card to column on the left. */
   function handleMoveLeft() {
     setCards((prevCards) => {
       let newCards = prevCards.map((column) => ({
@@ -73,11 +74,11 @@ export default function TodoCard({ index, colpos }) {
       return newCards;
     });
   }
-
+  /* Open the edit modal. */
   function handleEdit() {
     handleToggleEditModal(index, colpos);
   }
-
+  /* Moves card down in the same column. */
   function handleMoveDown() {
     setCards((prevCards) => {
       const newCards = prevCards.map((column) => ({
@@ -92,7 +93,7 @@ export default function TodoCard({ index, colpos }) {
       return newCards;
     });
   }
-
+  /* Moves card up in the same column. */
   function handleMoveUp() {
     setCards((prevCards) => {
       const newCards = prevCards.map((column) => ({

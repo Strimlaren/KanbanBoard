@@ -3,6 +3,7 @@ import { DataContext, ModalContext } from "./Provider.jsx";
 import "../assets/styles/modal.css";
 import { CloseIcon, TrashIcon } from "../assets/images/icons.jsx";
 
+/* Handles the modal for editing todo-tasks */
 export default function EditModal() {
   const [cards, setCards] = useContext(DataContext);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -13,6 +14,7 @@ export default function EditModal() {
     handleToggleEditModal,
     setIsEditModalOpen,
   ] = useContext(ModalContext);
+  /* State that keeps track of all user inputs and the char count of their current content. */
   const [userInputs, setUserInputs] = useState({
     title: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].cardTitle,
     content: cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].content,
@@ -24,7 +26,7 @@ export default function EditModal() {
     creatorChar:
       cards[isEditModalOpen[2]].cards[isEditModalOpen[1]].creator.length,
   });
-
+  /* Universal function that updates any of the user inputs based on the html name attribute. */
   function handleContentChange(e) {
     setIsDisabled(false);
     setUserInputs((prevInputs) => ({
@@ -33,7 +35,7 @@ export default function EditModal() {
       [e.target.name + "Char"]: e.target.value.length,
     }));
   }
-
+  /* Returns a time-stamp in YYYY-MM-DD format. */
   function getTimeStamp() {
     const today = new Date();
     const year = today.getFullYear();
@@ -42,7 +44,7 @@ export default function EditModal() {
 
     return `${year}-${month}-${day}`;
   }
-
+  /* Submits the edited task to the data-state and closes modal window. */
   function handleSubmit() {
     setCards((prevCards) => {
       let newCards = prevCards.map((column) => ({
@@ -63,7 +65,7 @@ export default function EditModal() {
       return newCards;
     });
   }
-
+  /* Deletes current todo-task from data-state and closes modal window. */
   function handleDelete() {
     setCards((prevCards) => {
       const newCards = prevCards.map((column) => ({

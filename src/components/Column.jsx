@@ -10,6 +10,7 @@ import {
   EditTitle,
 } from "../assets/images/icons.jsx";
 
+/* Creates columns from the data-state (cards) */
 export default function Column({ card, colpos, nav, length, routed }) {
   const [
     isNewModalOpen,
@@ -18,10 +19,13 @@ export default function Column({ card, colpos, nav, length, routed }) {
     handleToggleEditModal,
   ] = useContext(ModalContext);
   const [cards, setCards] = useContext(DataContext);
+  /* Keeps track of when user is editing a column title */
   const [isEditing, setIsEditing] = useState(false);
+  /* Handles the auto-focusing of the input-field when user clicks the edit column title button */
   const focusInput = useRef(null);
 
   function handleMoveColumnLeft() {
+    /* Make a spread copy of the entire state object including the nested array */
     setCards((prevCards) => {
       const newCards = prevCards.map((column) => ({
         ...column,
@@ -74,11 +78,12 @@ export default function Column({ card, colpos, nav, length, routed }) {
     if (e.key === "Enter") handleToggleEditColumnName();
   }
 
+  /* Whenever isEditing is set to true, set focus on the relative input field. */
   useEffect(() => {
     if (focusInput.current) {
       focusInput.current.focus();
     }
-  }, [isEditing === true]);
+  }, [isEditing]);
 
   return (
     <>
