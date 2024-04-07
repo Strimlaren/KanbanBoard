@@ -111,7 +111,7 @@ export default function NewModal() {
               style={{ width: "50%" }}
               required
               name="creator"
-              maxLength={20}
+              maxLength={13}
               spellCheck="false"
               onChange={handleContentChange}
               value={userInputs.creator}
@@ -119,11 +119,11 @@ export default function NewModal() {
             <span className="creator-char-counter">
               <span
                 className={
-                  userInputs.creatorChar > 15 ? "counter-red" : "counter-gray"
+                  userInputs.creatorChar > 9 ? "counter-red" : "counter-gray"
                 }>
                 {userInputs.creatorChar}
               </span>
-              /20
+              /13
             </span>
             <span className="time-stamp">{getTimeStamp()}</span>
             <button

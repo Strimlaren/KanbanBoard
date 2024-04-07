@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { DataContext, ModalContext } from "./Provider.jsx";
 import TodoCard from "./TodoCard";
 import NewModal from "./NewModal.jsx";
@@ -19,6 +19,7 @@ export default function Column({ card, colpos, nav, length, routed }) {
   ] = useContext(ModalContext);
   const [cards, setCards] = useContext(DataContext);
   const [isEditing, setIsEditing] = useState(false);
+  const focusInput = useRef(null);
 
   function handleMoveColumnLeft() {
     setCards((prevCards) => {
@@ -52,6 +53,9 @@ export default function Column({ card, colpos, nav, length, routed }) {
 
   function handleToggleEditColumnName() {
     setIsEditing((prevState) => !prevState);
+    if (focusInput.current) {
+      focusInput.current.focus();
+    }
   }
 
   function handleUpdateTitle(e) {
@@ -70,11 +74,17 @@ export default function Column({ card, colpos, nav, length, routed }) {
     if (e.key === "Enter") handleToggleEditColumnName();
   }
 
+  useEffect(() => {
+    if (focusInput.current) {
+      focusInput.current.focus();
+    }
+  }, [isEditing === true]);
+
   return (
     <>
       {isNewModalOpen && <NewModal />}
       {isEditModalOpen[0] && <EditModal />}
-      <div className="column">
+      <div className="column" draggable={true}>
         <div className="column-title">
           {colpos !== 0 && !routed && !isEditing ? (
             <span
@@ -96,6 +106,7 @@ export default function Column({ card, colpos, nav, length, routed }) {
                 value={cards[colpos].columnTitle}
                 onChange={handleUpdateTitle}
                 onKeyDown={handleKeyPress}
+                ref={focusInput}
               />
             ) : (
               <h2
