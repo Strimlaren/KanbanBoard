@@ -117,13 +117,15 @@ export default function Column({ card, colpos, nav, length, routed }) {
               <h2
                 className={nav ? "column-title-link" : undefined}
                 onClick={
-                  nav ? () => nav(`/col/${card.columnTitle}`) : undefined
+                  nav
+                    ? () => nav(`/col/${card.columnTitle.toLowerCase()}`)
+                    : undefined
                 }>
                 {card.columnTitle}
               </h2>
             )}
 
-            <span className="path">{`/col/${card.columnTitle}`}</span>
+            <span className="path">{`/col/${card.columnTitle.toLowerCase()}`}</span>
           </div>
           {colpos !== length - 1 && !routed && !isEditing ? (
             <span
