@@ -66,18 +66,23 @@ export default function Column({ card, colpos, nav, length, routed }) {
   }
 
   function handleUpdateTitle(e) {
-    setCards((prevCards) => {
-      const newCards = prevCards.map((column) => ({
-        ...column,
-        cards: column.cards.map((card) => ({ ...card })),
-      }));
+    setCards((prevCards) =>
+      prevCards.map((column, index) =>
+        colpos === index ? { ...column, columnTitle: e.target.value } : column
+      )
+    );
+  }
 
-      newCards[colpos].columnTitle = e.target.value;
-      return newCards;
-    });
+  function isUniqueTitle(e) {
+    const newTitle = e.target.value.toLowerCase();
+    const titleExists = cards.some(
+      (column) => column.columnTitle.toLowerCase() === newTitle
+    );
+    return titleExists;
   }
 
   function handleKeyPress(e) {
+    console.log(e);
     if (e.key === "Enter") handleToggleEditColumnName();
   }
 
