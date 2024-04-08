@@ -16,7 +16,7 @@ export default function Header({ children }) {
         }));
 
         const newColumn = {
-          columnTitle: `Column ${cards.length + 1}`,
+          columnTitle: `Column ${Date.now()}`,
           cards: [],
         };
 

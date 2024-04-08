@@ -316,7 +316,6 @@ svg:hover {
   transform: translateX(-50%);
   font-size: 0.7rem;
   color: #13a9b7;
-  /* transition: opacity 0.5s ease; */
   opacity: 0;
 }
 
