@@ -2,6 +2,7 @@ import Column from "./Column";
 import { useContext } from "react";
 import { DataContext } from "./Provider";
 import { useNavigate } from "react-router";
+import { AddColumn } from "../assets/images/icons";
 
 /* Creates all Columns in base mode (when no routing is used) */
 export default function ColumnList() {

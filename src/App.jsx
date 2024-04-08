@@ -8,26 +8,14 @@ import { Routes, Route } from "react-router-dom";
 export default function App() {
   return (
     <>
-      <Header>MMC Kanban Board</Header>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Provider>
-              <ColumnList />
-            </Provider>
-          }
-        />
-        <Route
-          path="/col/*"
-          element={
-            <Provider>
-              <RoutedColumnList />
-            </Provider>
-          }
-        />
-        <Route path="*" element={<Error />} />
-      </Routes>
+      <Provider>
+        <Header>MMC Kanban Board</Header>
+        <Routes>
+          <Route path="/" element={<ColumnList />} />
+          <Route path="/col/*" element={<RoutedColumnList />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </Provider>
     </>
   );
 }

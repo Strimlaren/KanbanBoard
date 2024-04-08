@@ -8,6 +8,7 @@ import {
   ArrowRight,
   ArrowLeft,
   EditTitle,
+  DeleteColumn,
 } from "../assets/images/icons.jsx";
 
 /* Creates columns from the data-state (cards) */
@@ -80,6 +81,19 @@ export default function Column({ card, colpos, nav, length, routed }) {
     if (e.key === "Enter") handleToggleEditColumnName();
   }
 
+  function handleDeleteColumn(e) {
+    setCards((prevCards) => {
+      const newCards = prevCards.map((column) => ({
+        ...column,
+        cards: column.cards.map((card) => ({ ...card })),
+      }));
+
+      const tempCards = newCards.filter((_, index) => index !== colpos);
+
+      return tempCards;
+    });
+  }
+
   /* Whenever isEditing is set to true, set focus on the relative input field. */
   useEffect(() => {
     if (focusInput.current) {
@@ -143,6 +157,11 @@ export default function Column({ card, colpos, nav, length, routed }) {
             onClick={handleToggleEditColumnName}>
             <EditTitle />
           </span>
+          {colpos > 2 && !routed ? (
+            <span className="delete-column" onClick={handleDeleteColumn}>
+              <DeleteColumn />
+            </span>
+          ) : undefined}
 
           {colpos === 0 && (
             <div className="add-icon">
@@ -155,18 +174,20 @@ export default function Column({ card, colpos, nav, length, routed }) {
 
         <div className="cards-container">
           {card.cards.map((cardx, index) => {
-            return (
-              <TodoCard
-                key={index}
-                index={index}
-                colpos={colpos}
-                title={cardx.cardTitle}
-                content={cardx.content}
-                creator={cardx.creator}
-                date={cardx.date}
-                edited={false}
-              />
-            );
+            if (cards.length > 0) {
+              return (
+                <TodoCard
+                  key={index}
+                  index={index}
+                  colpos={colpos}
+                  title={cardx.cardTitle}
+                  content={cardx.content}
+                  creator={cardx.creator}
+                  date={cardx.date}
+                  edited={false}
+                />
+              );
+            } else return;
           })}
         </div>
       </div>
