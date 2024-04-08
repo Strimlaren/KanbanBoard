@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { carddata } from "../assets/carddata.jsx";
+import { DragDropContext } from "react-beautiful-dnd";
 
 export const ModalContext = createContext();
 export const DataContext = createContext();
@@ -28,18 +29,22 @@ export default function Provider({ children }) {
     localStorage.setItem("data", JSON.stringify(cards));
   }, [cards]);
 
+  function handleOnDragEnd(result) {}
+
   return (
-    <ModalContext.Provider
-      value={[
-        isNewModalOpen,
-        handleToggleNewModal,
-        isEditModalOpen,
-        handleToggleEditModal,
-        setIsEditModalOpen,
-      ]}>
-      <DataContext.Provider value={[cards, setCards]}>
-        {children}
-      </DataContext.Provider>
-    </ModalContext.Provider>
+    <DragDropContext onDragEnd={handleOnDragEnd}>
+      <ModalContext.Provider
+        value={[
+          isNewModalOpen,
+          handleToggleNewModal,
+          isEditModalOpen,
+          handleToggleEditModal,
+          setIsEditModalOpen,
+        ]}>
+        <DataContext.Provider value={[cards, setCards]}>
+          {children}
+        </DataContext.Provider>
+      </ModalContext.Provider>
+    </DragDropContext>
   );
 }
