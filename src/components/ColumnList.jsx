@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { DataContext } from "./Provider";
 import { useNavigate } from "react-router";
 
+/* Creates all Columns in base mode (when no routing is used) */
 export default function ColumnList() {
   const [cards, setCards] = useContext(DataContext);
   const nav = useNavigate();

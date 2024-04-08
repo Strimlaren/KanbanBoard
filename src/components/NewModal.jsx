@@ -5,6 +5,7 @@ import { DataContext, ModalContext } from "./Provider.jsx";
 
 export default function NewModal() {
   const [cards, setCards] = useContext(DataContext);
+  /* State that keeps track of all user inputs and the char count of their current content. */
   const [userInputs, setUserInputs] = useState({
     title: "",
     content: "",
@@ -19,7 +20,7 @@ export default function NewModal() {
     isEditModalOpen,
     handleToggleEditModal,
   ] = useContext(ModalContext);
-
+  /* Universal function that updates any of the user inputs based on the html name attribute. */
   function handleContentChange(e) {
     setUserInputs((prevInputs) => ({
       ...prevInputs,
@@ -27,6 +28,7 @@ export default function NewModal() {
       [e.target.name + "Char"]: e.target.value.length,
     }));
   }
+  /* Returns a time-stamp in YYYY-MM-DD format. */
   function getTimeStamp() {
     const today = new Date();
     const year = today.getFullYear();
@@ -35,6 +37,7 @@ export default function NewModal() {
 
     return `${year}-${month}-${day}`;
   }
+  /* Pushes a new task to the first column and closes the new-task modal window. */
   function handleSubmit() {
     setCards((prevCards) => {
       let newCards = prevCards.map((column) => ({

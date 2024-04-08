@@ -2,8 +2,9 @@ import Column from "./Column";
 import Error from "./Error";
 import { useContext } from "react";
 import { DataContext } from "./Provider";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
+/* Creates routed columns for individually reaching each column by path */
 export default function RoutedColumnList() {
   const [cards, setCards] = useContext(DataContext);
 

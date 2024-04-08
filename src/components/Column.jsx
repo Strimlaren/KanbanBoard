@@ -10,6 +10,7 @@ import {
   EditTitle,
 } from "../assets/images/icons.jsx";
 
+/* Creates columns from the data-state (cards) */
 export default function Column({ card, colpos, nav, length, routed }) {
   const [
     isNewModalOpen,
@@ -18,12 +19,15 @@ export default function Column({ card, colpos, nav, length, routed }) {
     handleToggleEditModal,
   ] = useContext(ModalContext);
   const [cards, setCards] = useContext(DataContext);
+  /* Keeps track of when user is editing a column title */
   const [isEditing, setIsEditing] = useState(false);
+  /* Handles the auto-focusing of the input-field when user clicks the edit column title button */
   const focusInput = useRef(null);
   const dragItem = useRef();
   const dragOverItem = useRef();
 
   function handleMoveColumnLeft() {
+    /* Make a spread copy of the entire state object including the nested array */
     setCards((prevCards) => {
       const newCards = prevCards.map((column) => ({
         ...column,
@@ -76,54 +80,18 @@ export default function Column({ card, colpos, nav, length, routed }) {
     if (e.key === "Enter") handleToggleEditColumnName();
   }
 
-  function dragStart(e) {
-    dragItem.current = e.target.id;
-    console.log("Grabbed: " + e.target.id);
-  }
-
-  function dragEnter(e) {
-    dragOverItem.current = e.currentTarget.id;
-    console.log("Hovering: " + dragOverItem.current);
-  }
-
-  function dragEnd() {
-    setCards((prevCards) => {
-      const newCards = prevCards.map((column) => ({
-        ...column,
-        cards: column.cards.map((card) => ({ ...card })),
-      }));
-
-      console.log("State of startDrag @ end of drag: " + dragItem.current);
-      console.log("State of dragOver @ end of drag: " + dragOverItem.current);
-
-      const tempColumn = newCards[dragOverItem.current];
-      newCards[dragOverItem.current] = newCards[dragItem.current];
-      newCards[dragItem.current] = tempColumn;
-
-      dragItem.current = null;
-      dragOverItem.current = null;
-
-      return newCards;
-    });
-  }
-
+  /* Whenever isEditing is set to true, set focus on the relative input field. */
   useEffect(() => {
     if (focusInput.current) {
       focusInput.current.focus();
     }
-  }, [isEditing === true]);
+  }, [isEditing]);
 
   return (
     <>
       {isNewModalOpen && <NewModal />}
       {isEditModalOpen[0] && <EditModal />}
-      <div
-        id={colpos}
-        className="column"
-        draggable
-        onDragStart={dragStart}
-        onDragOver={dragEnter}
-        onDragEnd={dragEnd}>
+      <div className="column">
         <div className="column-title">
           {colpos !== 0 && !routed && !isEditing ? (
             <span
@@ -151,13 +119,15 @@ export default function Column({ card, colpos, nav, length, routed }) {
               <h2
                 className={nav ? "column-title-link" : undefined}
                 onClick={
-                  nav ? () => nav(`/col/${card.columnTitle}`) : undefined
+                  nav
+                    ? () => nav(`/col/${card.columnTitle.toLowerCase()}`)
+                    : undefined
                 }>
                 {card.columnTitle}
               </h2>
             )}
 
-            <span className="path">{`/col/${card.columnTitle}`}</span>
+            <span className="path">{`/col/${card.columnTitle.toLowerCase()}`}</span>
           </div>
           {colpos !== length - 1 && !routed && !isEditing ? (
             <span

@@ -6,7 +6,7 @@ import {
   EditIcon,
   DoneIcon,
 } from "../assets/images/icons";
-
+/* Returns the 404 page not found error page. */
 export default function Error() {
   return (
     <>

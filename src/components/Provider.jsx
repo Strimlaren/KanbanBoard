@@ -3,15 +3,13 @@ import { carddata } from "../assets/carddata.jsx";
 
 export const ModalContext = createContext();
 export const DataContext = createContext();
-
-/* Holder of global states, delivers modaltoggles and contexts to all children to this component. */
+/* Provides children  with a slew of global states and functions via context */
 export default function Provider({ children }) {
-  /* Initialize stored column/card data, if first load then use instruction cards. */
+  /* Set the data-state (cards) to whatever is in localStorage if it exists, else use the preset tasks and columns */
   const storedCardsJSON = localStorage.getItem("data");
   const storedCards = storedCardsJSON ? JSON.parse(storedCardsJSON) : carddata;
-
-  /* Main data-state, modal-open/close states */
   const [cards, setCards] = useState(storedCards);
+  /* States that keep track if edit/new modals are open. */
   const [isNewModalOpen, setIsNewModalOpen] = useState(false);
   /* [isopen?, card-index, col-index] */
   const [isEditModalOpen, setIsEditModalOpen] = useState([false, null, null]);
@@ -19,13 +17,13 @@ export default function Provider({ children }) {
   function handleToggleNewModal() {
     setIsNewModalOpen((prevState) => !prevState);
   }
-  /* Handles toggling of edit modal and passes on card-index and column-index. This so EditModal can use it to get correct data from cards state. */
+  /* Open/close edit task modal and store column positions and card array position of the card that called the function. This is used to easily fetch the correct data for editing. */
   function handleToggleEditModal(index, colpos) {
     if (index !== undefined && colpos !== undefined)
       setIsEditModalOpen((prevState) => [!prevState[0], index, colpos]);
     else setIsEditModalOpen([false, null, null]);
   }
-  /* Whenever cards is altered, save data to localStorage */
+  /* Whenever data-state is updated, save it to localStorage. */
   useEffect(() => {
     localStorage.setItem("data", JSON.stringify(cards));
   }, [cards]);
