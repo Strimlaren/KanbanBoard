@@ -1,6 +1,7 @@
 export let carddata = [
   {
     columnTitle: "To Do",
+    columnId: "0",
     cards: [
       {
         cardTitle: "Add a Todo",
@@ -9,6 +10,7 @@ export let carddata = [
         date: "1986-12-04",
         creator: "Strimlaren",
         edited: false,
+        id: "999",
       },
       {
         cardTitle: "Routing",
@@ -17,11 +19,13 @@ export let carddata = [
         date: "1965-02-12",
         creator: "MMC",
         edited: false,
+        id: "888",
       },
     ],
   },
   {
     columnTitle: "Doing",
+    columnId: "1",
     cards: [
       {
         cardTitle: "Finish tasks",
@@ -30,6 +34,7 @@ export let carddata = [
         date: "1987-05-23",
         creator: "Strimlaren",
         edited: false,
+        id: "777",
       },
       {
         cardTitle: "Edit, delete, move",
@@ -38,6 +43,7 @@ export let carddata = [
         date: "2019-05-08",
         creator: "Strimlaren",
         edited: false,
+        id: "666",
       },
       {
         cardTitle: "Vertical sorting",
@@ -46,6 +52,7 @@ export let carddata = [
         date: "1997-10-02",
         creator: "Mirza",
         edited: false,
+        id: "555",
       },
       {
         cardTitle: "Edited/Added ?",
@@ -54,11 +61,13 @@ export let carddata = [
         date: "1958-04-23",
         creator: "Mirza",
         edited: false,
+        id: "444",
       },
     ],
   },
   {
     columnTitle: "Done",
+    columnId: "2",
     cards: [
       {
         cardTitle: "Finish your stuff",
@@ -67,6 +76,7 @@ export let carddata = [
         date: "2021-08-01",
         creator: "Strimlaren",
         edited: false,
+        id: "333",
       },
     ],
   },

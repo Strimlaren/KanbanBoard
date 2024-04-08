@@ -14,18 +14,20 @@ export default function ColumnList() {
 
   return (
     <>
-      <DragDropContext onDragEnd={onDragEnd}>
-        {cards.map((card, index) => (
-          <Column
-            key={index}
-            card={card}
-            colpos={index}
-            nav={nav}
-            length={length}
-            routed={false}
-          />
-        ))}
-      </DragDropContext>
+      <section className="column-list">
+        <DragDropContext onDragEnd={onDragEnd}>
+          {cards.map((card, index) => (
+            <Column
+              key={index}
+              card={card}
+              colpos={index}
+              nav={nav}
+              length={length}
+              routed={false}
+            />
+          ))}
+        </DragDropContext>
+      </section>
     </>
   );
 }

@@ -113,9 +113,7 @@ export default function TodoCard({ index, colpos }) {
 
   return (
     <>
-      <Draggable
-        draggableId={cards[colpos].cards[index].cardTitle}
-        index={index}>
+      <Draggable draggableId={cards[colpos].cards[index].id} index={index}>
         {(provided) => (
           <div
             className="todo-card"

@@ -100,102 +100,100 @@ export default function Column({ card, colpos, nav, length, routed }) {
       {isNewModalOpen && <NewModal />}
       {isEditModalOpen[0] && <EditModal />}
 
-      <section className="column-list">
-        <div className="column">
-          <div className="column-title">
-            {colpos !== 0 && !routed && !isEditing ? (
-              <span
-                className="column-edit-button w13"
-                onClick={handleMoveColumnLeft}>
-                <ArrowLeft />
-              </span>
-            ) : (
-              <span className="column-edit-button w13"></span>
-            )}
-            <div>
-              {isEditing ? (
-                <input
-                  type="text"
-                  maxLength={15}
-                  className="title-edit-input"
-                  required
-                  spellCheck={false}
-                  value={cards[colpos].columnTitle}
-                  onChange={handleUpdateTitle}
-                  onKeyDown={handleKeyPress}
-                  ref={focusInput}
-                />
-              ) : (
-                <h2
-                  className={nav ? "column-title-link" : undefined}
-                  onClick={
-                    nav
-                      ? () => nav(`/col/${card.columnTitle.toLowerCase()}`)
-                      : undefined
-                  }>
-                  {card.columnTitle}
-                </h2>
-              )}
-
-              <span className="path">{`/col/${card.columnTitle.toLowerCase()}`}</span>
-            </div>
-            {colpos !== length - 1 && !routed && !isEditing ? (
-              <span
-                className="column-edit-button w13"
-                onClick={handleMoveColumnRight}>
-                <ArrowRight />
-              </span>
-            ) : (
-              <span className="column-edit-button w13"></span>
-            )}
+      <div className="column">
+        <div className="column-title">
+          {colpos !== 0 && !routed && !isEditing ? (
             <span
-              className="column-edit-button edit-title-icon"
-              onClick={handleToggleEditColumnName}>
-              <EditTitle />
+              className="column-edit-button w13"
+              onClick={handleMoveColumnLeft}>
+              <ArrowLeft />
             </span>
-            {colpos > 2 && !routed ? (
-              <span className="delete-column" onClick={handleDeleteColumn}>
-                <DeleteColumn />
-              </span>
-            ) : undefined}
-
-            {colpos === 0 && (
-              <div className="add-icon">
-                <span onClick={handleToggleNewModal}>
-                  <AddNewIcon />
-                </span>
-              </div>
+          ) : (
+            <span className="column-edit-button w13"></span>
+          )}
+          <div>
+            {isEditing ? (
+              <input
+                type="text"
+                maxLength={15}
+                className="title-edit-input"
+                required
+                spellCheck={false}
+                value={cards[colpos].columnTitle}
+                onChange={handleUpdateTitle}
+                onKeyDown={handleKeyPress}
+                ref={focusInput}
+              />
+            ) : (
+              <h2
+                className={nav ? "column-title-link" : undefined}
+                onClick={
+                  nav
+                    ? () => nav(`/col/${card.columnTitle.toLowerCase()}`)
+                    : undefined
+                }>
+                {card.columnTitle}
+              </h2>
             )}
+
+            <span className="path">{`/col/${card.columnTitle.toLowerCase()}`}</span>
           </div>
+          {colpos !== length - 1 && !routed && !isEditing ? (
+            <span
+              className="column-edit-button w13"
+              onClick={handleMoveColumnRight}>
+              <ArrowRight />
+            </span>
+          ) : (
+            <span className="column-edit-button w13"></span>
+          )}
+          <span
+            className="column-edit-button edit-title-icon"
+            onClick={handleToggleEditColumnName}>
+            <EditTitle />
+          </span>
+          {colpos > 2 && !routed ? (
+            <span className="delete-column" onClick={handleDeleteColumn}>
+              <DeleteColumn />
+            </span>
+          ) : undefined}
 
-          <Droppable droppableId={colpos.toString()}>
-            {(provided) => (
-              <div
-                className="cards-container"
-                {...provided.droppableProps}
-                ref={provided.innerRef}>
-                {card.cards.map((cardx, index) => {
-                  if (cards.length > 0) {
-                    return (
-                      <TodoCard
-                        key={index}
-                        index={index}
-                        colpos={colpos}
-                        title={cardx.cardTitle}
-                        content={cardx.content}
-                        creator={cardx.creator}
-                        date={cardx.date}
-                        edited={false}
-                      />
-                    );
-                  } else return;
-                })}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
+          {colpos === 0 && (
+            <div className="add-icon">
+              <span onClick={handleToggleNewModal}>
+                <AddNewIcon />
+              </span>
+            </div>
+          )}
         </div>
-      </section>
+
+        <Droppable droppableId={colpos.toString()}>
+          {(provided) => (
+            <div
+              className="cards-container"
+              {...provided.droppableProps}
+              ref={provided.innerRef}>
+              {card.cards.map((cardx, index) => {
+                if (cards.length > 0) {
+                  return (
+                    <TodoCard
+                      key={index}
+                      index={index}
+                      colpos={colpos}
+                      title={cardx.cardTitle}
+                      content={cardx.content}
+                      creator={cardx.creator}
+                      date={cardx.date}
+                      edited={false}
+                    />
+                  );
+                } else return;
+              })}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </div>
     </>
   );
 }
