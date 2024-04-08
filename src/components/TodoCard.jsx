@@ -8,6 +8,8 @@ import {
 } from "../assets/images/icons.jsx";
 import { useContext } from "react";
 import { DataContext, ModalContext } from "./Provider.jsx";
+import { Draggable } from "react-beautiful-dnd";
+
 /* Creates each todo-task */
 export default function TodoCard({ index, colpos }) {
   const [cards, setCards] = useContext(DataContext);
@@ -111,59 +113,69 @@ export default function TodoCard({ index, colpos }) {
 
   return (
     <>
-      <div className="todo-card">
-        <div className="lateral-icons-container">
-          {index === 0 ? (
-            <span className="arrow-height"></span>
-          ) : (
-            <span onClick={handleMoveUp} className="arrow-height">
-              <ArrowUp />
-            </span>
-          )}
-          {index > cards[colpos].cards.length ||
-          index === cards[colpos].cards.length - 1 ? (
-            <span className="arrow-height"></span>
-          ) : (
-            <span onClick={handleMoveDown} className="arrow-height">
-              <ArrowDown />
-            </span>
-          )}
-        </div>
-        <h3>{cards[colpos].cards[index].cardTitle}</h3>
-        <div className="p-content-div">
-          <p>{cards[colpos].cards[index].content}</p>
-        </div>
-        <div className="card-footer">
-          <p>
-            <span
-              className={
-                cards[colpos].cards[index].edited ? "edited" : "unedited"
-              }>
-              {cards[colpos].cards[index].edited ? "Edited " : "Added "}
-            </span>{" "}
-            {cards[colpos].cards[index].date} by{" "}
-            <span className="highlight">
-              {cards[colpos].cards[index].creator}
-            </span>
-          </p>
-          <div className="icon-container">
-            {colpos !== 0 && (
-              <span className="left-icon" onClick={handleMoveLeft}>
-                <ReturnIcon />
-              </span>
-            )}
-            <span onClick={handleDelete}>
-              <TrashIcon />
-            </span>
-            <span onClick={handleEdit}>
-              <EditIcon />
-            </span>
-            <span className="right-icon" onClick={handleMoveRight}>
-              <DoneIcon />
-            </span>
+      <Draggable
+        draggableId={cards[colpos].cards[index].cardTitle}
+        index={index}>
+        {(provided) => (
+          <div
+            className="todo-card"
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}>
+            <div className="lateral-icons-container">
+              {index === 0 ? (
+                <span className="arrow-height"></span>
+              ) : (
+                <span onClick={handleMoveUp} className="arrow-height">
+                  <ArrowUp />
+                </span>
+              )}
+              {index > cards[colpos].cards.length ||
+              index === cards[colpos].cards.length - 1 ? (
+                <span className="arrow-height"></span>
+              ) : (
+                <span onClick={handleMoveDown} className="arrow-height">
+                  <ArrowDown />
+                </span>
+              )}
+            </div>
+            <h3>{cards[colpos].cards[index].cardTitle}</h3>
+            <div className="p-content-div">
+              <p>{cards[colpos].cards[index].content}</p>
+            </div>
+            <div className="card-footer">
+              <p>
+                <span
+                  className={
+                    cards[colpos].cards[index].edited ? "edited" : "unedited"
+                  }>
+                  {cards[colpos].cards[index].edited ? "Edited " : "Added "}
+                </span>{" "}
+                {cards[colpos].cards[index].date} by{" "}
+                <span className="highlight">
+                  {cards[colpos].cards[index].creator}
+                </span>
+              </p>
+              <div className="icon-container">
+                {colpos !== 0 && (
+                  <span className="left-icon" onClick={handleMoveLeft}>
+                    <ReturnIcon />
+                  </span>
+                )}
+                <span onClick={handleDelete}>
+                  <TrashIcon />
+                </span>
+                <span onClick={handleEdit}>
+                  <EditIcon />
+                </span>
+                <span className="right-icon" onClick={handleMoveRight}>
+                  <DoneIcon />
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        )}
+      </Draggable>
     </>
   );
 }
