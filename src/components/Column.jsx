@@ -89,7 +89,7 @@ export default function Column({ card, colpos, nav, length, routed }) {
     <>
       {isNewModalOpen && <NewModal />}
       {isEditModalOpen[0] && <EditModal />}
-      <div className="column" draggable={true}>
+      <div className="column">
         <div className="column-title">
           {colpos !== 0 && !routed && !isEditing ? (
             <span
