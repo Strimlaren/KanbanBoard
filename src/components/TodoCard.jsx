@@ -118,7 +118,6 @@ export default function TodoCard({ index, colpos }) {
           <div
             className="todo-card"
             {...provided.draggableProps}
-            {...provided.dragHandleProps}
             ref={provided.innerRef}>
             <div className="lateral-icons-container">
               {index === 0 ? (
@@ -137,9 +136,11 @@ export default function TodoCard({ index, colpos }) {
                 </span>
               )}
             </div>
-            <h3>{cards[colpos].cards[index].cardTitle}</h3>
-            <div className="p-content-div">
-              <p>{cards[colpos].cards[index].content}</p>
+            <div {...provided.dragHandleProps}>
+              <h3>{cards[colpos].cards[index].cardTitle}</h3>
+              <div className="p-content-div">
+                <p>{cards[colpos].cards[index].content}</p>
+              </div>
             </div>
             <div className="card-footer">
               <p>
