@@ -37,7 +37,7 @@ export default function Header({ children }) {
     <header>
       <div className="header-backdrop">
         <span className="reset" onClick={handleReset}>
-          RESET
+          R
         </span>
         <h1 className="column-title-link" onClick={() => nav("/")}>
           {children}

@@ -340,10 +340,8 @@ svg:hover {
 }
 
 .reset {
-  width: 20px;
-  height: 20px;
   background-color: transparent;
-  margin-right: 40px;
+  margin-right: 20px;
   margin-top: 5px;
   cursor: pointer;
 }

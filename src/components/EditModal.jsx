@@ -59,6 +59,7 @@ export default function EditModal() {
         date: getTimeStamp(),
         creator: userInputs.creator,
         edited: true,
+        id: newCards[isEditModalOpen[2]].cards[isEditModalOpen[1]].id,
       };
 
       newCards[isEditModalOpen[2]].cards[isEditModalOpen[1]] = newCard;

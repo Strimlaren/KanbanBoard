@@ -166,7 +166,6 @@ export default function Column({ card, colpos, nav, length, routed }) {
             </div>
           )}
         </div>
-        {/* {!routed ? ( */}
         <Droppable droppableId={cards[colpos].columnId}>
           {(provided) => (
             <div
@@ -184,6 +183,7 @@ export default function Column({ card, colpos, nav, length, routed }) {
                       content={cardx.content}
                       creator={cardx.creator}
                       date={cardx.date}
+                      id={cardx.id}
                       edited={false}
                     />
                   );
@@ -193,26 +193,6 @@ export default function Column({ card, colpos, nav, length, routed }) {
             </div>
           )}
         </Droppable>
-        {/* ) : (
-          <div className="cards-container">
-            {card.cards.map((cardx, index) => {
-              if (cards.length > 0) {
-                return (
-                  <TodoCard
-                    key={index}
-                    index={index}
-                    colpos={colpos}
-                    title={cardx.cardTitle}
-                    content={cardx.content}
-                    creator={cardx.creator}
-                    date={cardx.date}
-                    edited={false}
-                  />
-                );
-              } else return;
-            })}
-          </div>
-        )} */}
       </div>
     </>
   );

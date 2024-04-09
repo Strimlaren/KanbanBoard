@@ -11,7 +11,7 @@ import { DataContext, ModalContext } from "./Provider.jsx";
 import { Draggable } from "@hello-pangea/dnd";
 
 /* Creates each todo-task */
-export default function TodoCard({ index, colpos }) {
+export default function TodoCard({ index, colpos, id }) {
   const [cards, setCards] = useContext(DataContext);
   const [
     isNewModalOpen,
@@ -113,11 +113,7 @@ export default function TodoCard({ index, colpos }) {
 
   return (
     <>
-      <Draggable
-        draggableId={cards[colpos].cards[index].id}
-        // draggableId={String(Date.now().toString().slice(-4))}
-        index={index}
-        key={index}>
+      <Draggable draggableId={id} index={index} key={id}>
         {(provided) => (
           <div
             className="todo-card"
