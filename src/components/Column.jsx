@@ -10,7 +10,7 @@ import {
   EditTitle,
   DeleteColumn,
 } from "../assets/images/icons.jsx";
-import { Droppable, Draggable } from "react-beautiful-dnd";
+import { Droppable } from "@hello-pangea/dnd";
 
 /* Creates columns from the data-state (cards) */
 export default function Column({ card, colpos, nav, length, routed }) {
@@ -167,7 +167,7 @@ export default function Column({ card, colpos, nav, length, routed }) {
           )}
         </div>
 
-        <Droppable droppableId={colpos.toString()}>
+        <Droppable droppableId={cards[colpos].columnId}>
           {(provided) => (
             <div
               className="cards-container"

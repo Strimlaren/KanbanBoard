@@ -8,7 +8,7 @@ import {
 } from "../assets/images/icons.jsx";
 import { useContext } from "react";
 import { DataContext, ModalContext } from "./Provider.jsx";
-import { Draggable } from "react-beautiful-dnd";
+import { Draggable } from "@hello-pangea/dnd";
 
 /* Creates each todo-task */
 export default function TodoCard({ index, colpos }) {
@@ -113,12 +113,16 @@ export default function TodoCard({ index, colpos }) {
 
   return (
     <>
-      <Draggable draggableId={cards[colpos].cards[index].id} index={index}>
+      <Draggable
+        draggableId={cards[colpos].cards[index].id}
+        // draggableId={String(Date.now())}
+        index={index}
+        key={index}>
         {(provided) => (
           <div
             className="todo-card"
-            {...provided.draggableProps}
-            ref={provided.innerRef}>
+            ref={provided.innerRef}
+            {...provided.draggableProps}>
             <div className="lateral-icons-container">
               {index === 0 ? (
                 <span className="arrow-height"></span>

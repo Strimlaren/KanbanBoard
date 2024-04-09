@@ -2,7 +2,7 @@ import Column from "./Column";
 import { useContext } from "react";
 import { DataContext } from "./Provider";
 import { useNavigate } from "react-router";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext } from "@hello-pangea/dnd";
 
 /* Creates all Columns in base mode (when no routing is used) */
 export default function ColumnList() {
@@ -10,7 +10,48 @@ export default function ColumnList() {
   const nav = useNavigate();
   const length = cards.length;
 
-  function onDragEnd(result) {}
+  /* Handles the moving of items when releasing drag */
+  function onDragEnd(result) {
+    setCards((prevCards) => {
+      const newCards = prevCards.map((column) => ({
+        ...column,
+        cards: column.cards.map((card) => ({ ...card })),
+      }));
+      const { destination, source, draggableId } = result;
+
+      if (!destination) return;
+      if (
+        destination.droppableId === source.droppableId &&
+        destination.index === source.index
+      )
+        return;
+
+      const sourceCards = newCards[source.droppableId].cards;
+      sourceCards.splice(source.index, 1);
+
+      const movedItem = cards[source.droppableId].cards.filter(
+        (item) =>
+          !sourceCards.some(
+            (sourceItem) => JSON.stringify(sourceItem) === JSON.stringify(item)
+          )
+      );
+      if (newCards[destination.droppableId]) {
+        console.log("Destination exists");
+      } else console.log("Destination does not exist");
+      if (newCards[destination.droppableId].cards.length === 0) {
+        newCards[destination.droppableId].cards.push(movedItem[0]);
+      } else {
+        newCards[destination.droppableId].cards.splice(
+          destination.index,
+          0,
+          movedItem[0]
+        );
+      }
+
+      newCards[source.droppableId].cards = sourceCards;
+      return newCards;
+    });
+  }
 
   return (
     <>
