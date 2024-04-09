@@ -338,3 +338,12 @@ svg:hover {
     margin: 0;
   }
 }
+
+.reset {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  margin-right: 40px;
+  margin-top: 5px;
+  cursor: pointer;
+}

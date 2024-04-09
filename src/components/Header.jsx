@@ -28,9 +28,17 @@ export default function Header({ children }) {
     } else window.alert("Maximum allowed columns reached.");
   }
 
+  function handleReset() {
+    localStorage.removeItem("data");
+    location.reload();
+  }
+
   return (
     <header>
       <div className="header-backdrop">
+        <span className="reset" onClick={handleReset}>
+          RESET
+        </span>
         <h1 className="column-title-link" onClick={() => nav("/")}>
           {children}
         </h1>
