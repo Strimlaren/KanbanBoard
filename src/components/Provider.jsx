@@ -56,8 +56,6 @@ export default function Provider({ children }) {
           )
       );
       /* Add the dragged item to the destination column */
-
-      console.log(destination.droppableId);
       newCards[destination.droppableId].cards.splice(
         destination.index,
         0,
