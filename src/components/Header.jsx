@@ -16,8 +16,8 @@ export default function Header({ children }) {
         }));
 
         const newColumn = {
-          columnTitle: `Col ${Date.now()}`,
-          columnId: String(Date.now()),
+          columnTitle: `Col-${Date.now().toString().slice(-4)}`,
+          columnId: String(newCards.length),
           cards: [],
         };
 

@@ -18,36 +18,37 @@ export default function ColumnList() {
         cards: column.cards.map((card) => ({ ...card })),
       }));
       const { destination, source, draggableId } = result;
-
+      console.log(destination.droppableId);
+      /* If user tries to move a card to a spot that is not droppable, or back to the same spot, do nothing */
       if (!destination) return;
       if (
         destination.droppableId === source.droppableId &&
         destination.index === source.index
       )
         return;
-
+      /* Remove the dragged card from its source container */
       const sourceCards = newCards[source.droppableId].cards;
       sourceCards.splice(source.index, 1);
-
+      /* Get hold of the card that is being dragged */
       const movedItem = cards[source.droppableId].cards.filter(
         (item) =>
           !sourceCards.some(
             (sourceItem) => JSON.stringify(sourceItem) === JSON.stringify(item)
           )
       );
-      if (newCards[destination.droppableId]) {
-        console.log("Destination exists");
-      } else console.log("Destination does not exist");
+      /* Add the dragged item to the destination column */
+
       if (newCards[destination.droppableId].cards.length === 0) {
         newCards[destination.droppableId].cards.push(movedItem[0]);
       } else {
+        console.log(destination.droppableId);
         newCards[destination.droppableId].cards.splice(
           destination.index,
           0,
           movedItem[0]
         );
       }
-
+      /* Set the source column to same content but without the dragged card */
       newCards[source.droppableId].cards = sourceCards;
       return newCards;
     });
