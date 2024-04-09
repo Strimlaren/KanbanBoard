@@ -115,7 +115,7 @@ export default function TodoCard({ index, colpos }) {
     <>
       <Draggable
         draggableId={cards[colpos].cards[index].id}
-        // draggableId={String(Date.now())}
+        // draggableId={String(Date.now().toString().slice(-4))}
         index={index}
         key={index}>
         {(provided) => (

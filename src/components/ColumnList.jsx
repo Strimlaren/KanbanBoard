@@ -8,24 +8,24 @@ import { DragDropContext } from "@hello-pangea/dnd";
 export default function ColumnList() {
   const [cards, setCards] = useContext(DataContext);
   const nav = useNavigate();
-  const length = cards.length;
+  // const length = cards.length;
 
   /* Handles the moving of items when releasing drag */
   function onDragEnd(result) {
+    const { destination, source, draggableId } = result;
+    if (!destination) return;
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    )
+      return;
+
     setCards((prevCards) => {
       const newCards = prevCards.map((column) => ({
         ...column,
         cards: column.cards.map((card) => ({ ...card })),
       }));
-      const { destination, source, draggableId } = result;
-      console.log(destination.droppableId);
       /* If user tries to move a card to a spot that is not droppable, or back to the same spot, do nothing */
-      if (!destination) return;
-      if (
-        destination.droppableId === source.droppableId &&
-        destination.index === source.index
-      )
-        return;
       /* Remove the dragged card from its source container */
       const sourceCards = newCards[source.droppableId].cards;
       sourceCards.splice(source.index, 1);
@@ -38,16 +38,13 @@ export default function ColumnList() {
       );
       /* Add the dragged item to the destination column */
 
-      if (newCards[destination.droppableId].cards.length === 0) {
-        newCards[destination.droppableId].cards.push(movedItem[0]);
-      } else {
-        console.log(destination.droppableId);
-        newCards[destination.droppableId].cards.splice(
-          destination.index,
-          0,
-          movedItem[0]
-        );
-      }
+      console.log(destination.droppableId);
+      newCards[destination.droppableId].cards.splice(
+        destination.index,
+        0,
+        movedItem[0]
+      );
+
       /* Set the source column to same content but without the dragged card */
       newCards[source.droppableId].cards = sourceCards;
       return newCards;
