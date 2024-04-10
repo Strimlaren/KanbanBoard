@@ -13,7 +13,7 @@ import {
 import { Droppable } from "@hello-pangea/dnd";
 
 /* Creates columns from the data-state (cards) */
-export default function Column({ card, colpos, nav, length, routed }) {
+export default function Column({ card, colpos, nav, routed }) {
   const [
     isNewModalOpen,
     handleToggleNewModal,
@@ -23,6 +23,7 @@ export default function Column({ card, colpos, nav, length, routed }) {
   const [cards, setCards] = useContext(DataContext);
   /* Keeps track of when user is editing a column title */
   const [isEditing, setIsEditing] = useState(false);
+  const length = cards.length;
   /* Handles the auto-focusing of the input-field when user clicks the edit column title button */
   const focusInput = useRef(null);
   function handleMoveColumnLeft() {

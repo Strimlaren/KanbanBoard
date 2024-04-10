@@ -7,7 +7,6 @@ import { useNavigate } from "react-router";
 export default function ColumnList() {
   const [cards, setCards] = useContext(DataContext);
   const nav = useNavigate();
-  // const length = cards.length;
 
   return (
     <>
@@ -18,7 +17,6 @@ export default function ColumnList() {
             card={card}
             colpos={index}
             nav={nav}
-            length={length}
             routed={false}
           />
         ))}
