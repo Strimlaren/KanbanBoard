@@ -16,20 +16,28 @@ export default function Header({ children }) {
         }));
 
         const newColumn = {
-          columnTitle: `Col ${Date.now()}`,
+          columnTitle: `Col-${Date.now().toString().slice(-4)}`,
+          columnId: String(newCards.length),
           cards: [],
         };
 
         newCards.push(newColumn);
-        console.log(newCards);
         return newCards;
       });
     } else window.alert("Maximum allowed columns reached.");
   }
 
+  function handleReset() {
+    localStorage.removeItem("data");
+    location.reload();
+  }
+
   return (
     <header>
       <div className="header-backdrop">
+        <span className="reset" onClick={handleReset}>
+          R
+        </span>
         <h1 className="column-title-link" onClick={() => nav("/")}>
           {children}
         </h1>

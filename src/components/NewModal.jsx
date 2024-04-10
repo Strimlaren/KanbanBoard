@@ -51,6 +51,7 @@ export default function NewModal() {
         date: getTimeStamp(),
         creator: userInputs.creator,
         edited: false,
+        id: String(Date.now()),
       };
 
       newCards[0].cards.push(newCard);
