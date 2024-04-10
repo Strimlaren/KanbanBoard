@@ -96,6 +96,7 @@ export default function Column({ card, colpos, nav, columnId, routed }) {
     }
   }, [isEditing]);
 
+  /* Entire column code twice inside a ternary, to stop draggable/droppable contexts to break the routing. This can be made more DRY */
   return (
     <>
       {!routed ? (

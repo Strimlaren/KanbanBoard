@@ -81,7 +81,7 @@ export let carddata = [
       {
         cardTitle: "Drag and Drop!",
         content:
-          "Dragging and dropping of tasks is available as well, for easier visual sorting. Works well on mobile.",
+          "Dragging and dropping of tasks is available as well, for easier visual sorting. Columns are draggable too. 'Grab em by the header. You can do anything you want'. Works well on mobile.",
         date: "2022-08-01",
         creator: "Strimlaren",
         edited: false,
