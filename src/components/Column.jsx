@@ -24,6 +24,7 @@ export default function Column({ card, colpos, nav, length, routed }) {
   const [isEditing, setIsEditing] = useState(false);
   /* Handles the auto-focusing of the input-field when user clicks the edit column title button */
   const focusInput = useRef(null);
+
   function handleMoveColumnLeft() {
     /* Make a spread copy of the entire state object including the nested array */
     setCards((prevCards) => {
