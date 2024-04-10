@@ -31,7 +31,20 @@ export default function Provider({ children }) {
 
   /* Handles the moving of items when releasing drag */
   function onDragEnd(result) {
-    const { destination, source, draggableId } = result;
+    const { destination, source, draggableId, type } = result;
+
+    if (type === "column") {
+      console.log("COLUMN");
+      console.log(source.index);
+      console.log(destination.index);
+    } else if (type === "task") {
+      console.log("TASK");
+      console.log(source.index);
+    } else {
+      console.log("NONE");
+      console.log(source.index);
+    }
+
     if (!destination) return;
     if (
       destination.droppableId === source.droppableId &&
@@ -44,6 +57,15 @@ export default function Provider({ children }) {
         ...column,
         cards: column.cards.map((card) => ({ ...card })),
       }));
+
+      /* Checks if dragged item was a column and reorders them. */
+      if (type === "column") {
+        const tempColumn = newCards.splice(source.index, 1);
+        newCards.splice(destination.index, 0, tempColumn[0]);
+
+        return newCards;
+      }
+
       /* If user tries to move a card to a spot that is not droppable, or back to the same spot, do nothing */
       /* Remove the dragged card from its source container */
       const sourceCards = newCards[source.droppableId].cards;

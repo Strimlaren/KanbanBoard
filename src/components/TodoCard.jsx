@@ -116,17 +116,17 @@ export default function TodoCard({ index, colpos, id }) {
       <Draggable draggableId={id} index={index} key={id}>
         {(provided, snapshot) => {
           /* Styling not working, even with documentation https://github.com/hello-pangea/dnd/blob/main/docs/api/draggable.md */
-          const style = {
-            ...provided.draggableProps.style,
-            backgroundColor: snapshot.isDragging ? "blue" : "white",
-            fontSize: 18,
-          };
+          // const style = {
+          //   ...provided.draggableProps.style,
+          //   backgroundColor: snapshot.isDragging ? "blue" : "white",
+          //   fontSize: 18,
+          // };
           return (
             <div
               className="todo-card"
               ref={provided.innerRef}
-              style={style}
               {...provided.draggableProps}>
+              {/* style={style} */}
               <div className="lateral-icons-container">
                 {index === 0 ? (
                   <span className="arrow-height"></span>

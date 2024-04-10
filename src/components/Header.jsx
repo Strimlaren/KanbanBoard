@@ -22,7 +22,6 @@ export default function Header({ children }) {
         };
 
         newCards.push(newColumn);
-        console.log(newCards);
         return newCards;
       });
     } else window.alert("Maximum allowed columns reached.");
