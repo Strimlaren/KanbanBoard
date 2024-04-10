@@ -19,7 +19,6 @@ export default function TodoCard({ index, colpos, id }) {
     isEditModalOpen,
     handleToggleEditModal,
   ] = useContext(ModalContext);
-
   /* Filters unwanted todo-card from the array of cards. */
   function handleDelete() {
     setCards((prevCards) => {
