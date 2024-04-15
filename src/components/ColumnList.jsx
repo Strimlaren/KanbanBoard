@@ -22,7 +22,7 @@ export default function ColumnList() {
             ref={provided.innerRef}>
             {cards.map((card, index) => (
               <Column
-                key={index}
+                key={card.columnId}
                 card={card}
                 colpos={index}
                 nav={nav}

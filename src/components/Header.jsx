@@ -21,7 +21,7 @@ export default function Header({ children }) {
           cards: [],
         };
 
-        newCards.push(newColumn);
+        newCards.splice(newCards.length, 0, newColumn);
         return newCards;
       });
     } else window.alert("Maximum allowed columns reached.");

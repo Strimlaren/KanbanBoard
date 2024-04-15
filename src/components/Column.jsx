@@ -26,6 +26,7 @@ export default function Column({ card, colpos, nav, columnId, routed }) {
   const length = cards.length;
   /* Handles the auto-focusing of the input-field when user clicks the edit column title button */
   const focusInput = useRef(null);
+
   function handleMoveColumnLeft() {
     /* Make a spread copy of the entire state object including the nested array */
     setCards((prevCards) => {
@@ -33,11 +34,14 @@ export default function Column({ card, colpos, nav, columnId, routed }) {
         ...column,
         cards: column.cards.map((card) => ({ ...card })),
       }));
-
+      /* Columns switches positions */
       const tempColumn = newCards[colpos - 1];
       newCards[colpos - 1] = newCards[colpos];
       newCards[colpos] = tempColumn;
-
+      /* Switch the columns ids (for drag and drop) */
+      const tempId = newCards[colpos - 1].columnId;
+      newCards[colpos - 1].columnId = newCards[colpos].columnId;
+      newCards[colpos].columnId = tempId;
       return newCards;
     });
   }
@@ -48,11 +52,14 @@ export default function Column({ card, colpos, nav, columnId, routed }) {
         ...column,
         cards: column.cards.map((card) => ({ ...card })),
       }));
-
+      /* Columns switches positions */
       const tempColumn = newCards[colpos + 1];
       newCards[colpos + 1] = newCards[colpos];
       newCards[colpos] = tempColumn;
-
+      /* Switch the columns ids (for drag and drop) */
+      const tempId = newCards[colpos + 1].columnId;
+      newCards[colpos + 1].columnId = newCards[colpos].columnId;
+      newCards[colpos].columnId = tempId;
       return newCards;
     });
   }
