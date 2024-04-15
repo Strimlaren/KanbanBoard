@@ -92,6 +92,11 @@ export default function Column({ card, colpos, nav, columnId, routed }) {
 
       const tempCards = newCards.filter((_, index) => index !== colpos);
 
+      let i = 0;
+      tempCards.forEach((column) => {
+        column.columnId = String(i);
+        i++;
+      });
       return tempCards;
     });
   }
