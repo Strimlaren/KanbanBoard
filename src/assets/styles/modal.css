@@ -41,14 +41,14 @@
 
 .modal-column-title,
 .modal-column-close {
-  padding: 4px 8px 5px 10px;
+  padding: 4px 10px 5px 10px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background-color: #212121;
   font-size: 0.8rem;
   box-shadow: 0 0 2px 1px #212121;
   color: #13a9b7;
-  font-weight: 900;
+  font-weight: 300;
   letter-spacing: 1px;
   text-transform: uppercase;
   z-index: 2;

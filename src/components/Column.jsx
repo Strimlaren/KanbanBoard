@@ -28,7 +28,7 @@ export default function Column({ card, colpos, nav, columnId, routed }) {
   const focusInput = useRef(null);
 
   function handleMoveColumnLeft() {
-    /* Make a spread copy of the entire state object including the nested array */
+    /* Make a spread copy of the entire state object including the nested array. This method is reused in all relevant functions throughout the app. */
     setCards((prevCards) => {
       const newCards = prevCards.map((column) => ({
         ...column,
@@ -45,7 +45,7 @@ export default function Column({ card, colpos, nav, columnId, routed }) {
       return newCards;
     });
   }
-
+  /* Move columns to the right */
   function handleMoveColumnRight() {
     setCards((prevCards) => {
       const newCards = prevCards.map((column) => ({
@@ -63,14 +63,14 @@ export default function Column({ card, colpos, nav, columnId, routed }) {
       return newCards;
     });
   }
-
+  /* Toggles edit/normal mode of column names. Used for switching the column title between an input and h2 */
   function handleToggleEditColumnName() {
     setIsEditing((prevState) => !prevState);
     if (focusInput.current) {
       focusInput.current.focus();
     }
   }
-
+  /* Updates column titles */
   function handleUpdateTitle(e) {
     setCards((prevCards) =>
       prevCards.map((column, index) =>
@@ -78,12 +78,12 @@ export default function Column({ card, colpos, nav, columnId, routed }) {
       )
     );
   }
-
+  /* Allows for confirming column name change with enter key */
   function handleKeyPress(e) {
     if (e.key === "Enter") handleToggleEditColumnName();
   }
-
-  function handleDeleteColumn(e) {
+  /* Handles deletion of columns */
+  function handleDeleteColumn() {
     setCards((prevCards) => {
       const newCards = prevCards.map((column) => ({
         ...column,
@@ -95,15 +95,13 @@ export default function Column({ card, colpos, nav, columnId, routed }) {
       return tempCards;
     });
   }
-
   /* Whenever isEditing is set to true, set focus on the relative input field. */
   useEffect(() => {
     if (focusInput.current) {
       focusInput.current.focus();
     }
   }, [isEditing]);
-
-  /* Entire column code twice inside a ternary, to stop draggable/droppable contexts to break the routing. This can be made more DRY */
+  /* Entire column code twice inside a ternary, to stop draggable/droppable contexts to break the routing. This can and should be made more DRY */
   return (
     <>
       {!routed ? (
