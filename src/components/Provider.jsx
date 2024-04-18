@@ -51,12 +51,15 @@ export default function Provider({ children }) {
       if (type === "column") {
         /* Swap positions of the relevant columns */
         const tempColumn = newCards[source.index];
+        console.log(tempColumn);
         newCards[source.index] = newCards[destination.index];
         newCards[destination.index] = tempColumn;
+
         /* Switch the columns ids */
         const tempId = String(newCards[source.index].columnId);
         newCards[source.index].columnId = newCards[destination.index].columnId;
         newCards[destination.index].columnId = tempId;
+
         return newCards;
       }
       /* If the dragged item is not a column, it is a task. Switch places with relevant tasks. */
