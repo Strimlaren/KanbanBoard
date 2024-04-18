@@ -13,8 +13,8 @@ export default function App() {
         <Header>MMC Kanban Board</Header>
         <Routes>
           <Route path="/" element={<ColumnList />} />
-          <Route path="/col/:colTitle/*" element={<RoutedColumnList />} />
           <Route path="/:id" element={<RoutedTodo />} />
+          <Route path="/col/:colTitle/*" element={<RoutedColumnList />} />
           <Route path="*" element={<Error from="Home" />} />
         </Routes>
       </Provider>

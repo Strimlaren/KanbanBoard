@@ -48,7 +48,6 @@ export default function Provider({ children }) {
       }));
 
       /* Checks if dragged item was a column and reorders them. */
-      /* BUG LOCATED: COLUMNS KEEP THEIR ID, BUT FUNCTION MOVES THEM ACCORDING TO INDEX ? */
       if (type === "column") {
         /* Swap positions of the relevant columns */
         const tempColumn = newCards[source.index];
