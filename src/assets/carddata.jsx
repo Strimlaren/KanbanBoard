@@ -39,7 +39,7 @@ export let carddata = [
       {
         cardTitle: "Edit, delete, move",
         content:
-          "Move back todos with the back button, delete notes with the trash button, or move them forward by the checkbutton.",
+          "Move back todos with the back butto  n, delete notes with the trash button, or move them forward by the checkbutton.",
         date: "2019-05-08",
         creator: "Mirza",
         edited: false,

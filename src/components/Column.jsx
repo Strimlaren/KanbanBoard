@@ -91,7 +91,7 @@ export default function Column({ card, colpos, nav, columnId, routed }) {
       }));
 
       const tempCards = newCards.filter((_, index) => index !== colpos);
-
+      /* Go through columns and make sure all columnIds are in cronological order (drag and drop requirement) */
       let i = 0;
       tempCards.forEach((column) => {
         column.columnId = String(i);
@@ -201,12 +201,7 @@ export default function Column({ card, colpos, nav, columnId, routed }) {
                                 key={index}
                                 index={index}
                                 colpos={colpos}
-                                title={cardx.cardTitle}
-                                content={cardx.content}
-                                creator={cardx.creator}
-                                date={cardx.date}
                                 id={cardx.id}
-                                edited={false}
                               />
                             );
                           } else return;
@@ -303,12 +298,7 @@ export default function Column({ card, colpos, nav, columnId, routed }) {
                           key={index}
                           index={index}
                           colpos={colpos}
-                          title={cardx.cardTitle}
-                          content={cardx.content}
-                          creator={cardx.creator}
-                          date={cardx.date}
                           id={cardx.id}
-                          edited={false}
                         />
                       );
                     } else return;
