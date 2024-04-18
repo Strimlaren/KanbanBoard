@@ -130,7 +130,7 @@ export default function RoutedTodo() {
                   onClick={handleToggleEditColumnName}>
                   <EditTitle />
                 </span>
-                {colpos > 2 && !routed ? (
+                {colpos > 2 ? (
                   <span className="delete-column" onClick={handleDeleteColumn}>
                     <DeleteColumn />
                   </span>
