@@ -2,27 +2,23 @@ import Column from "./Column";
 import Error from "./Error";
 import { useContext } from "react";
 import { DataContext } from "./Provider";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 
 /* Creates routed columns for individually reaching each column by path */
 export default function RoutedColumnList() {
   const [cards, setCards] = useContext(DataContext);
 
+  /* Find the index of column with this path */
+  const { colTitle } = useParams();
+  let colpos;
+  colpos = cards.findIndex(
+    (column) => column.columnTitle.toLowerCase() === colTitle
+  );
+
   return (
     <>
       <section className="column-list">
-        <Routes>
-          {cards.map((card, index) => {
-            return (
-              <Route
-                key={index}
-                path={`/${card.columnTitle}`}
-                element={<Column card={card} colpos={index} routed={true} />}
-              />
-            );
-          })}
-          <Route path="*" element={<Error />} />
-        </Routes>
+        <Column card={cards[colpos]} colpos={colpos} routed={true} />
       </section>
     </>
   );

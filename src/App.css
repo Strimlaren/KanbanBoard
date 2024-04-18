@@ -166,6 +166,10 @@ h2:hover+.path {
   opacity: 1;
 }
 
+.column-title-link {
+  transition: color 0.3s;
+}
+
 .column-title-link:hover {
   color: #777777;
   cursor: pointer;

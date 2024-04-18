@@ -8,6 +8,7 @@ import {
 } from "../assets/images/icons.jsx";
 import { useContext } from "react";
 import { DataContext, ModalContext } from "./Provider.jsx";
+import { useNavigate } from "react-router-dom";
 import { Draggable } from "@hello-pangea/dnd";
 
 /* Creates each todo-task */
@@ -19,6 +20,7 @@ export default function TodoCard({ index, colpos, id }) {
     isEditModalOpen,
     handleToggleEditModal,
   ] = useContext(ModalContext);
+  const nav = useNavigate();
   /* Filters unwanted todo-card from the array of cards. */
   function handleDelete() {
     setCards((prevCards) => {
@@ -114,18 +116,11 @@ export default function TodoCard({ index, colpos, id }) {
     <>
       <Draggable draggableId={id} index={index} key={id}>
         {(provided, snapshot) => {
-          /* Styling not working, even with documentation https://github.com/hello-pangea/dnd/blob/main/docs/api/draggable.md */
-          // const style = {
-          //   ...provided.draggableProps.style,
-          //   backgroundColor: snapshot.isDragging ? "blue" : "white",
-          //   fontSize: 18,
-          // };
           return (
             <div
               className="todo-card"
               ref={provided.innerRef}
               {...provided.draggableProps}>
-              {/* style={style} */}
               <div className="lateral-icons-container">
                 {index === 0 ? (
                   <span className="arrow-height"></span>
@@ -144,7 +139,11 @@ export default function TodoCard({ index, colpos, id }) {
                 )}
               </div>
               <div {...provided.dragHandleProps}>
-                <h3>{cards[colpos].cards[index].cardTitle}</h3>
+                <h3
+                  className="column-title-link"
+                  onClick={() => nav(`/${cards[colpos].cards[index].id}`)}>
+                  {cards[colpos].cards[index].cardTitle}
+                </h3>
                 <div className="p-content-div">
                   <p>{cards[colpos].cards[index].content}</p>
                 </div>

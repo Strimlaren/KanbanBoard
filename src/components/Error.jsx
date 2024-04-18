@@ -7,7 +7,7 @@ import {
   DoneIcon,
 } from "../assets/images/icons";
 /* Returns the 404 page not found error page. */
-export default function Error() {
+export default function Error({ from }) {
   return (
     <>
       <section className="column-list">
@@ -32,7 +32,7 @@ export default function Error() {
                 <p>
                   It is just a reflection of yourself that is bending. I dont
                   know why this is relevant, it sure as hell wont help you find
-                  what you were looking for.
+                  what you were looking for. You came from {from}.
                 </p>
               </div>
               <div className="card-footer">
