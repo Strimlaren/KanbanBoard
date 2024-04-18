@@ -30,8 +30,8 @@ export default function RoutedTodo() {
   /* Get colpos and index of this card inside the cards state */
   const { id } = useParams();
 
-  let colpos;
-  let cardIndex;
+  let colpos = -1;
+  let cardIndex = -1;
 
   cards.find((column, colIndex) => {
     const foundCardIndex = column.cards.findIndex((card) => {
@@ -90,7 +90,7 @@ export default function RoutedTodo() {
   /* Entire column code twice inside a ternary, to stop draggable/droppable contexts to break the routing. This can and should be made more DRY */
   return (
     <>
-      {!colpos ? (
+      {colpos === -1 ? (
         <Error from="RoutedTodo" />
       ) : (
         <>
