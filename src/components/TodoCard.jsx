@@ -37,7 +37,7 @@ export default function TodoCard({ index, colpos, id }) {
     });
   }
   /* Move card to column on the right. */
-  function handleMoveRight() {
+  function handleMoveCardTo(direction) {
     setCards((prevCards) => {
       let newCards = prevCards.map((column) => ({
         ...column,
@@ -51,28 +51,10 @@ export default function TodoCard({ index, colpos, id }) {
       );
       newCards[colpos].cards = filteredColumnCards;
 
-      if (colpos + 1 < cards.length)
-        newCards[colpos + 1].cards.push(targetedCard[0]);
-
-      return newCards;
-    });
-  }
-  /* Move card to column on the left. */
-  function handleMoveLeft() {
-    setCards((prevCards) => {
-      let newCards = prevCards.map((column) => ({
-        ...column,
-        cards: column.cards.map((card) => ({ ...card })),
-      }));
-
-      let targetedCard = newCards[colpos].cards.filter((_, i) => i === index);
-
-      let filteredColumnCards = newCards[colpos].cards.filter(
-        (_, i) => i !== index
-      );
-      newCards[colpos].cards = filteredColumnCards;
-
-      newCards[colpos - 1].cards.push(targetedCard[0]);
+      if (direction === "right") {
+        if (colpos + 1 < cards.length)
+          newCards[colpos + 1].cards.push(targetedCard[0]);
+      } else newCards[colpos - 1].cards.push(targetedCard[0]);
 
       return newCards;
     });
@@ -115,7 +97,7 @@ export default function TodoCard({ index, colpos, id }) {
   return (
     <>
       <Draggable draggableId={id} index={index} key={id}>
-        {(provided, snapshot) => {
+        {(provided) => {
           return (
             <div
               className="todo-card"
@@ -163,7 +145,9 @@ export default function TodoCard({ index, colpos, id }) {
                 </p>
                 <div className="icon-container">
                   {colpos !== 0 && (
-                    <span className="left-icon" onClick={handleMoveLeft}>
+                    <span
+                      className="left-icon"
+                      onClick={() => handleMoveCardTo("left")}>
                       <ReturnIcon />
                     </span>
                   )}
@@ -173,7 +157,9 @@ export default function TodoCard({ index, colpos, id }) {
                   <span onClick={handleEdit}>
                     <EditIcon />
                   </span>
-                  <span className="right-icon" onClick={handleMoveRight}>
+                  <span
+                    className="right-icon"
+                    onClick={() => handleMoveCardTo("right")}>
                     <DoneIcon />
                   </span>
                 </div>

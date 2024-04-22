@@ -10,7 +10,7 @@ export default function App() {
   return (
     <>
       <Provider>
-        <Header>MMC Kanban Board</Header>
+        <Header>MMCanban</Header>
         <Routes>
           <Route path="/" element={<ColumnList />} />
           <Route path="/:id" element={<RoutedTodo />} />
